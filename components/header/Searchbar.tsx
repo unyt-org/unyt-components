@@ -1,4 +1,4 @@
-import { Icon } from "../icon/Icon.tsx";
+import { Icon } from "../../elements/icon/Icon.tsx";
 import { ThemeSwitcher } from "../theme-switcher/ThemeSwitcher.tsx";
 export type SearchbarOptions = {
 	disableThemeSwitch?: boolean;

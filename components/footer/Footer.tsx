@@ -121,7 +121,7 @@ class Navbar extends Component<{mode?: "auto" | "light" | "dark", backgroundColo
 
 @template(function({logo, disableLanguageSelector, disableModeToggle, backgroundColor, disableReload, compact, mode}) {
 	return <shadow-root>
-		<link rel="stylesheet" href={"../theme/unyt.css"}/>
+		<link rel="stylesheet" href={"../../theme/unyt.css"}/>
 		<div id="footer" data-mode={mode ?? "auto"}>
 			{compact ? null : <Sitemap 
 				id="sitemap"

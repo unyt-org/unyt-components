@@ -31,7 +31,7 @@ export const Accordion = blankTemplate(function(props: {children?: any[] } & Acc
 
 @template(function({allowMultiple, items, left, right}) {
 	return <shadow-root>
-		<link rel="stylesheet" href={"../theme/unyt.css"}/>
+		<link rel="stylesheet" href={"../../theme/unyt.css"}/>
 		<div id="items" class="items" data-multiple={allowMultiple ?? false} data-dir={(!left && !right) ? "right" : left ? "left" : "right"}>
 			{items}
 		</div>

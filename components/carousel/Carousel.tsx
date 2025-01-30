@@ -20,7 +20,7 @@ export const Carousel = blankTemplate<CarouselOptions & { children?: any }>(({it
 
 @template(function({style, disableNavigation, backgroundColor, navigationColor, disableArrows, items}) {
 	return <shadow-root>
-		<link rel="stylesheet" href={"../theme/unyt.css"}/>
+		<link rel="stylesheet" href={"../../theme/unyt.css"}/>
 		<div id="carousel" class="unyt-carousel" style={{"--carousel-text-primary": navigationColor ?? ""}} stylesheet={"./Carousel.css"}>
 			{disableArrows ? null : <Icon name="fa-chevron-left" id="left"/>}
 			<div class="unyt-carousel-content" style={{

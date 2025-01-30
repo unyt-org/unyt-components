@@ -77,7 +77,7 @@ export const Cards = blankTemplate<CardsOptions & {children?: any}>(({appearance
 
 @template(function({cards, appearance, minWidth}) {
 	return <shadow-root>
-		<link rel="stylesheet" href={"../theme/unyt.css"}/>
+		<link rel="stylesheet" href={"../../theme/unyt.css"}/>
 		<div id="cards"
 			data-apperance={appearance ?? "default"}
 			stylesheet={"./Cards.css"}

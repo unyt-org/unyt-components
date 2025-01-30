@@ -111,7 +111,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 		}
 	
 	return <shadow-root>
-		<link rel="stylesheet" href={"../theme/unyt.css"}/>
+		<link rel="stylesheet" href={"../../theme/unyt.css"}/>
 		{banner ? <div id="banner" class="global-banner" data-mode={mode ?? "auto"} >
 			<div class="content">
 				{banner}

@@ -41,7 +41,7 @@ export const Selector = blankTemplate<SelectorOptions & {children?: any}>(functi
 
 @template(function({stylesheet, appearance, styles, options, hideChevron, label}) {
 	return <shadow-root>
-		<link rel="stylesheet" href={"../theme/unyt.css"}/>
+		<link rel="stylesheet" href={"../../theme/unyt.css"}/>
 		{stylesheet ? <link rel="stylesheet" href={stylesheet}/> : undefined}
 		{options && options.length ? <div data-appearance={appearance} id="dropdown" class="select">
 			{options}
