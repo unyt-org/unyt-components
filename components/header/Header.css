@@ -365,6 +365,8 @@
 					}
 				}
 				flex-direction: column;
+				top: 0;
+				left: 0;
 				max-width: var(--hamburger-max-size);
 				height: 100dvh;
 				color: var(--_hd-text-primary);
