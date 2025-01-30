@@ -78,9 +78,6 @@ body {
 	background-color: var(--unyt-bg-primary);
 	color: var(--unyt-text-primary);
 }
-body, * {
-	color: var(--unyt-text-primary);
-}
 
 p, h1, h2, h3, h4, h5, h6 {
 	text-wrap: pretty;
