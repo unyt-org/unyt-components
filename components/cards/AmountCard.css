@@ -1,0 +1,25 @@
+:scope {
+	--_ca-bg-primary: var(--card-bg-primary, var(--unyt-bg-secondary));
+	--_ca-text-primary: var(--card-text-primary, var(--unyt-text-primary));
+	--_ca-text-secondary: var(--card-text-secondary, var(--unyt-text-secondary));
+	--_ca-border-primary: var(--card-border-primary, var(--unyt-border-primary));
+
+	background-color: var(--_ca-bg-primary);
+	padding: 30px 20px;
+	border-radius: 10px;
+	border: 1px solid var(--_ca-border-primary);
+	box-sizing: border-box;
+	text-align: center;
+	* {
+		color: var(--_ca-text-secondary);
+	}
+	&>h2 {
+		color: var(--_ca-text-primary);
+		margin: 0;
+		padding: 0;
+		font-size: 40px;
+	}
+	&>span {
+		font-size: large;
+	}
+}

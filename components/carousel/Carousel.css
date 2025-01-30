@@ -1,0 +1,53 @@
+:scope {
+	--_ca-text-primary: var(--carousel-text-primary, var(--unyt-text-primary));
+
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	display: flex;
+	width: 100%;
+	position: relative;
+	--index: 0;
+	&>#right, &>#left {
+		color: var(--_ca-text-primary);
+		padding: 20px;
+		font-size: x-large;
+		opacity: 0.9;
+		transition: opacity 0.2s, transform 0.1s;
+		&:hover {
+			opacity: 1;
+		}
+		&:active {
+			transform: scale(0.9);
+		}
+	}
+	&>.unyt-carousel-navigation {
+		width: 100%;
+		height: 10px;
+	}
+	&>.unyt-carousel-content {
+		width: 100%;
+		flex-direction: row;
+		display: flex;
+		flex: 1;
+		overflow: hidden;
+		position: relative;
+		&>.unyt-carousel-items {
+			flex-direction: row;
+			flex: 1;
+			display: flex;
+			width: 100%;
+			transition: transform 0.8s;
+			flex-direction: row;
+			transform: translateX(calc(var(--index) * -100%));
+			&>* {
+				width: 100%;
+				height: 100%;
+				align-items: center;
+				flex: 0 0 100%;
+				box-sizing: border-box;
+				display: flex;
+			}
+		}
+	}
+}

@@ -1,0 +1,82 @@
+@container sidebar (min-width: 700px) {
+	* {
+	  background-color: red;
+	}
+}
+:scope {
+	--_tl-text-primary: var(--timeline-text-primary, var(--unyt-text-primary));
+	--_tl-text-secondary: var(--timeline-text-secondary, var(--unyt-text-secondary));
+	--_tl-gap: var(--timeline-gap, 30px);
+	--_tl-offset-y: var(--timeline-offset-y, 34px);
+	--_tl-offset-x: var(--timeline-offset-x, 0px);
+	--_tl-bullet-size: var(--timeline-bullet-size, 10px);
+	--_tl-bullet-half-size: calc(var(--_tl-bullet-size) / 2);
+	--_tl-bullet-offset: var(--timeline-bullet-offset, 2px);
+	--_tl-dobule-bullet-offset: calc(var(--_tl-bullet-offset) * 2);
+	color: var(--_tl-text-primary);
+	display: flex;
+	flex-direction: column;
+	gap: var(--_tl-gap);
+	container: timeline-content / inline-size;
+
+	@container timeline-content (max-width: 700px) {
+		.unyt-timeline-item {
+			&>.unyt-splitter {
+				padding-top: 0!important;
+				padding-bottom: 0!important;
+				flex-direction: column!important;
+				&>div:first-of-type {
+					position: unset!important;
+				}
+			}
+		}
+	}
+
+	* {
+		color: var(--_tl-text-primary);
+	}
+	
+	&>* {
+		position: relative;
+		padding: 20px;
+		&::before {
+			position: absolute;
+			content: '';
+			width: var(--_tl-bullet-size);
+			height: var(--_tl-bullet-size);
+			border-radius: 999px;
+			border: 2px solid var(--_tl-text-secondary);
+			top: calc(var(--_tl-offset-y) - var(--_tl-bullet-half-size));
+			left: calc(var(--_tl-offset-x) + calc(-1 * var(--_tl-bullet-half-size)));
+		}
+		&::after {
+			position: absolute;
+			content: '';
+			width: 2px;
+			background-color: var(--_tl-text-secondary);
+			left: calc(var(--_tl-offset-x) - 1px);
+			top: calc(calc(var(--_tl-offset-y) + var(--_tl-bullet-half-size)) + var(--_tl-bullet-offset));
+			height: calc(calc(calc(100% + var(--_tl-gap)) - var(--_tl-bullet-size)) - var(--_tl-dobule-bullet-offset));
+		}
+		&:last-of-type {
+			&::after {
+				display: none;
+			}
+		}
+	}
+	&>.unyt-timeline-item {
+		box-sizing: border-box;
+		color: var(--_tl-text-primary);
+		&>h3 {
+			color: var(--_tl-text-primary);
+		}
+		&>h3, &>p {
+			margin: 0;
+			padding: 0;
+		}
+		&>p {
+			color: var(--_tl-text-secondary);
+			margin-top: 10px;
+		}
+	}
+}

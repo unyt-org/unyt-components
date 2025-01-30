@@ -1,0 +1,14 @@
+[data-unyt-background-image] {
+	background-repeat: no-repeat;
+	background-position: center;
+	&[data-mode="auto"],
+	&:not([data-mode]) {
+		background-image: var(--image-dark), var(--image-light);
+	}
+	&[data-mode="dark"] {
+		background-image: var(--url-dark);
+	}
+	&[data-mode="light"] {
+		background-image: var(--url-light);
+	}
+}

@@ -1,0 +1,40 @@
+:root {
+	--unyt-light: None;
+	
+	/* text */
+	--unyt-text-primary: var(--unyt-light-text-primary);
+	--unyt-text-secondary: var(--unyt-light-text-secondary);
+
+	--unyt-text-primary-inverse: var(--unyt-dark-text-primary);
+	--unyt-text-secondary-inverse: var(--unyt-light-text-primary);
+
+	/* button */
+	--unyt-button-primary: var(--unyt-light-button-primary);
+	--unyt-button-secondary: var(--unyt-light-button-secondary);
+
+	/* background */
+	--unyt-bg-primary: var(--unyt-light-bg-primary);
+	--unyt-bg-primary-hover: var(--unyt-light-bg-primary-hover);
+	
+	--unyt-bg-primary-selected: var(--unyt-light-bg-primary-selected);
+
+	--unyt-bg-secondary: var(--unyt-light-bg-secondary);
+	--unyt-bg-controls: var(--unyt-light-bg-controls);
+	--unyt-bg-alert: var(--unyt-light-bg-alert);
+
+	/* border */
+	--unyt-border-primary: var(--unyt-light-border-primary);
+	--unyt-border-invalid: var(--unyt-light-border-invalid);
+}
+
+.unyt-background-image[data-mode="auto"],
+.unyt-background-image:not([data-mode]) {
+	--a: url('light-image.png');
+	--b: url('dark-image.png');
+	--c: a;
+
+}
+
+::slotted(*) {
+	background-color: red;
+}

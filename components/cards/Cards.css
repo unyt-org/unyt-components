@@ -1,0 +1,19 @@
+:host {
+	--_ca-gap-x: var(--card-gap-x, 3rem);
+	--_ca-gap-y: var(--card-gap-y, 3rem);
+	
+	&>.unyt-cards {
+		display: grid;
+		--min-width: 200px;
+		grid-template-columns: repeat(auto-fit, minmax(min(var(--min-width), 100%), 1fr));
+		grid-column-gap: var(--_ca-gap-x);
+		grid-row-gap: var(--_ca-gap-y);
+		box-sizing: border-box;
+		width: 100%;
+		
+		&[data-appearance="no-background"] {
+			grid-column-gap: 4rem;
+			grid-row-gap: 0rem;
+		}
+	}
+}

@@ -1,0 +1,21 @@
+:scope {
+	--_in-border-primary: var(--input-border-primary, var(--unyt-border-primary));
+	--_in-bg-primary: var(--input-bg-primary, var(--unyt-bg-primary));
+	background-color: var(--_in-bg-primary);
+	box-sizing: border-box;
+	padding: 10px 8px;
+	border-radius: 8px;
+	border: 1px solid var(--_in-border-primary);
+	flex: 1;
+	&:-webkit-autofill { 
+		-webkit-background-clip: text;
+	}
+	&:not(:placeholder-shown):focus:invalid {
+		--_in-border-primary: var(--input-border-invalid, var(--unyt-border-invalid));
+	}
+	&:focus {
+		outline: none;
+	}
+	&:focus:not(:invalid) {
+	}
+}

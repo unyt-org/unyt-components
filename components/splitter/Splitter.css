@@ -1,0 +1,18 @@
+:scope {
+	--_gap-x: var(--gap-x, 40px);
+	--_gap-y: var(--gap-y, 100px);
+	
+	gap: var(--_gap-x) var(--_gap-y);
+	display: flex;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	img {
+		width: 100%;
+		min-width: min(200px, 100vw);
+		object-fit: cover;
+		border-radius: 8px;
+		background-repeat: no-repeat;
+		background-size: auto;
+		background-position: center center;
+	}
+}

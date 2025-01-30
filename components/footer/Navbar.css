@@ -1,0 +1,68 @@
+:scope {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	box-sizing: border-box;
+	min-height: 50px;
+	gap: 6px 20px;
+	a {
+		color: var(--_fo-link-color);
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	.copyright {
+		justify-self: flex-start!important;
+		white-space: nowrap;
+	}
+	.tos {
+		display: flex;
+		flex-direction: row;
+		flex: 1;
+		gap: 0px 8px;
+		&>a {
+			white-space: nowrap;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+	.references {
+		margin-left: auto;
+		flex-wrap: wrap;
+		display: flex;
+		height: 100%;
+		flex: 1;
+		gap: 10px;
+		overflow: hidden;
+		justify-content: flex-end;
+		a {
+			margin-top: 8px;
+			margin-bottom: 4px;
+			aspect-ratio: 1;
+			width: 34px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 34px;
+			opacity: 0.8;
+			color: var(--text);
+			text-decoration: none!important;
+			transition: opacity 0.2s, transform 0.1s ease-in-out;
+
+			span {
+				margin: 6px;
+				font-size: 28px;
+			}
+			&:hover {
+				opacity: 1;
+				transform: scale(0.94);
+			}
+			&:active {
+				transform: scale(0.9);
+			}
+		}
+	}
+}

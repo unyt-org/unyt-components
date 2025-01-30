@@ -1,0 +1,33 @@
+:root {
+	--unyt-dark: None;
+
+	/* text */
+	--unyt-text-primary: var(--unyt-dark-text-primary);
+	--unyt-text-secondary: var(--unyt-dark-text-secondary);
+
+	--unyt-text-primary-inverse: var(--unyt-light-text-primary);
+	--unyt-text-secondary-inverse: var(--unyt-light-text-secondary);
+
+	/* button */
+	--unyt-button-primary: var(--unyt-dark-button-primary);
+	--unyt-button-secondary: var(--unyt-dark-button-secondary);
+
+	/* background */
+	--unyt-bg-primary: var(--unyt-dark-bg-primary);
+	--unyt-bg-primary-hover: var(--unyt-dark-bg-primary-hover);
+
+	--unyt-bg-secondary: var(--unyt-dark-bg-secondary);
+	--unyt-bg-controls: var(--unyt-dark-bg-controls);
+	--unyt-bg-alert: var(--unyt-dark-bg-alert);
+
+	--unyt-bg-primary-selected: var(--unyt-dark-bg-primary-selected);
+	
+	/* border */
+	--unyt-border-primary: var(--unyt-dark-border-primary);
+	--unyt-border-invalid: var(--unyt-dark-border-invalid);
+}
+
+.unyt-background-image[data-mode="auto"],
+.unyt-background-image:not([data-mode]) {
+	background-image: var(--image-dark, None);
+}

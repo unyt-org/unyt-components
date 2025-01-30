@@ -1,0 +1,64 @@
+:host {
+	--_nb-text-primary: var(--newsletter-text-primary, var(--unyt-text-primary));
+	--_nb-text-secondary: var(--newsletter-text-secondary, var(--unyt-text-secondary));
+	* {
+		color: var(--_nb-text-secondary);
+	}
+	display: contents;
+	&>.unyt-newsletter-box {
+		width: 100%;
+		max-width: 1200px;
+		&>div {
+			border-radius: 10px;
+			&>.unyt-splitter {
+				padding: 16px;
+				&>.information, &>form {
+					display: flex;
+					justify-content: center;
+				}
+				&>.information {
+					min-width: min(100%, 400px);
+					margin: auto;
+					&>h1 {
+						color: var(--_nb-text-primary);
+						margin: 0;
+						line-height: 1;
+					}
+					gap: 4px;
+					flex-direction: column;
+				}
+				&>form {
+					min-width: min(100%, 300px);
+					margin: auto;
+					display: flex;
+					flex-direction: column;
+					gap: 10px;
+					.unyt-button {
+						width: 100%;
+						--button-bg-primary: var(--input-bg-primary, var(--unyt-bg-primary));
+					}
+					label {
+						user-select: none;
+					}
+					&>.unyt-splitter {
+						width: 100%;
+						align-items: unset!important;
+						padding: 0;
+					}
+					&>.unyt-splitter:first-of-type {
+						align-items: unset!important;
+						&>input {
+							font-size: medium;
+							min-height: 3rem;
+						}
+					}
+					&>.unyt-splitter:last-of-type {
+						input {
+							max-width: 20px;
+						}
+					}
+				}
+			}
+		}
+	}
+}

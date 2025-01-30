@@ -1,0 +1,192 @@
+use localtext from #std;
+
+export val sitemapStrings = {
+	darkMode: localtext {
+		en: 'Dark mode',
+		de: 'Modus: Dunkel'
+	},
+	lightMode: localtext {
+		en: 'Light mode',
+		de: 'Modus: Hell'
+	},
+};
+
+export val sitemapReferences = [
+	{
+		topic: localtext {
+			en: 'Overview',
+			de: 'Übersicht'
+		},
+		items: [
+			{
+				name: localtext {
+					en: 'Essentials',
+					de: 'Grundlagen'
+				},
+				link: https://unyt.org/
+			},
+			{
+				name: 'Open-Source',
+				link: https://github.com/unyt-org
+			},
+			{
+				name: localtext {
+					en: 'Sponsors',
+					de: 'Sponsoren'
+				},
+				link: https://unyt.org/sponsors
+			},
+			{
+				name: localtext {
+					en: 'PGP',
+					de: 'PGP'
+				},
+				link: https://unyt.org/pgp
+			},
+		]
+	},
+	{
+		topic: localtext {
+			en: 'Support',
+			de: 'Hilfe'
+		},
+		items: [
+			{
+				name: localtext {
+					en: 'Docs',
+					de: 'Doku'
+				},
+				link: https://docs.unyt.org/
+			},
+			{
+				name: localtext {
+					en: 'Blog',
+					de: 'Blog'
+				},
+				link: https://unyt.blog
+			},
+			{
+				name: localtext {
+					en: 'Glossary',
+					de: 'Glossar'
+				},
+				link: "https://unyt.org/glossary"
+			},
+			{
+				name: localtext {
+					en: 'Status',
+					de: 'Status'
+				},
+				link: https://status.unyt.org
+			}
+		]
+	},
+	{
+		topic: localtext {
+			en: 'Company',
+			de: 'Verein'
+		},
+		items: [
+			{
+				name: localtext {
+					en: 'Join us',
+					de: 'Mitmachen'
+				},
+				link: https://unyt.org/join
+			},
+			{
+				name: localtext {
+					en: 'Donate',
+					de: 'Spenden'
+				},
+				link: https://unyt.org/donate
+			},
+			{
+				name: localtext {
+					en: 'Careers',
+					de: 'Karriere'
+				},
+				link: "mailto:join@unyt.org"
+			},
+			{
+				name: localtext {
+					en: 'Contact',
+					de: 'Kontakt'
+				},
+				link: "mailto:support@unyt.org"
+			},
+		]
+	},
+	{
+		topic: localtext {
+			en: 'Team',
+			de: 'Team'
+		},
+		items: [
+			{
+				name: 'Jonas Strehle',
+				link: https://github.com/jonasstrehle
+			},
+			{
+				name: 'Benedikt Strehle',
+				link: https://github.com/benstre
+			},
+			{
+				name: 'Adrian Siebing',
+				link: https://github.com/asbng
+			},
+			{
+				name: 'Tim Köhler',
+				link: https://github.com/KoehlerT
+			}
+		]
+	},
+];
+
+export val navbarReferences = [
+	{
+		name: 'GitHub',
+		icon: 'fa-brands fa-github',
+		link: https://github.com/unyt-org
+	},
+	{
+		name: 'Discord',
+		icon: 'fa-brands fa-discord',
+		link: https://unyt.org/discord
+	},
+	{
+		name: 'Twitter',
+		icon: 'fa-brands fa-twitter',
+		link: https://unyt.org/twitter
+	},
+	{
+		name: 'Mastodon',
+		icon: 'fa-brands fa-mastodon',
+		link: https://unyt.org/mastodon
+	},
+	{
+		name: 'LinkedIn',
+		icon: 'fa-brands fa-linkedin',
+		link: https://unyt.org/linkedin
+	},
+	{
+		name: 'Instagram',
+		icon: 'fa-brands fa-instagram',
+		link: https://unyt.org/instagram
+	},
+];
+
+export val navbarStrings = {
+	terms: localtext {
+		en: 'Terms',
+		de: 'Nutzungsbedingungen'
+	},
+	privacy: localtext {
+		en: 'Privacy',
+		de: 'Datenschutz'
+	},
+	about: localtext {
+		en: 'Legal Notice',
+		de: 'Impressum'
+	}
+};

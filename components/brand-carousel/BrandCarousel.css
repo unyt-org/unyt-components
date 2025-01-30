@@ -1,0 +1,50 @@
+:scope {
+	--_bc-gap: var(--brand-carousel-gap, 6rem);
+
+	width: fit-content;
+	display: flex;
+	gap: var(--_bc-gap);
+	margin: auto;
+	width: 100%;
+	height: fit-content;
+	-webkit-mask-image: linear-gradient(to right, hsla(0, 0%, 0%, 0), hsl(0, 0%, 0%) 20%, hsl(0, 0%, 0%) 80%, hsla(0, 0%, 0%, 0));
+	mask-image: linear-gradient(to right, hsla(0, 0%, 0%, 0), hsl(0, 0%, 0%) 20%, hsl(0, 0%, 0%) 80%, hsla(0, 0%, 0%, 0));
+	user-select: none;
+	&>.unyt-brand-container {
+		display: flex;
+		min-width: 100%;
+		gap: var(--_bc-gap);
+		flex-shrink: 0;
+		justify-content: space-around;
+		align-items: center;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+		animation-direction: normal;
+		animation-fill-mode: none;
+		animation-play-state: running;
+		animation-name: unyt-brand-carousel-scroll;
+		animation-duration: 60s;
+		img {
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-o-user-select: none;
+			user-select: none;
+			-webkit-user-drag: none;
+			-khtml-user-drag: none;
+			-moz-user-drag: none;
+			-o-user-drag: none;
+			user-drag: none;
+		}
+	}
+}
+
+
+@keyframes unyt-brand-carousel-scroll {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(calc(-100%));
+	}
+}

@@ -1,0 +1,28 @@
+:scope {
+	--_ab-text-primary: var(--accordion-text-primary, var(--unyt-text-primary));
+	--_ab-text-secondary: var(--accordion-text-secondary, var(--unyt-text-secondary));
+	--_ab-border: var(--accordion-border-primary, var(--unyt-border-primary));
+	
+	border: 1px solid var(--_ab-border);
+	padding: 40px;
+	border-radius: 32px;
+	.unyt-splitter {
+		color: var(--_ab-text-primary);
+		&> div {
+			margin: auto;
+			&>.unyt-tag {
+				--tag-border-color: var(--_ab-border);
+			}
+			&>h1 {
+				color: var(--_ab-text-primary);
+				margin-top: 16px;
+				padding: 0;
+				margin-bottom: 0;
+			}
+			&>p {
+				color: var(--_ab-text-secondary);
+				margin-top: 14px;
+			}
+		}
+	}
+}

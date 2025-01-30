@@ -1,0 +1,41 @@
+:scope {
+	width: fit-content;
+	display: flex;
+	gap: 10px;
+	height: 40px;
+	--_qa-border-primary: var(--quantity-adjuster-border-primary, var(--unyt-border-primary));
+	--_qa-bg-primary: var(--quantity-adjuster-primary, var(--unyt-bg-primary));
+	background: var(--_qa-bg-primary);
+	border: 1px solid var(--_qa-border-primary);
+	border-radius: 6px;
+	&>button {
+		appearance: none;
+		background-color: transparent;
+		outline: none;
+		border: none;
+		width: 30px;
+		text-align: center;
+		font-size: medium;
+		cursor: pointer;
+		transition: opacity 0.1s;
+		opacity: 0.8;
+		&:hover {
+			opacity: 0.6;
+		}
+	}
+	&>input {
+		appearance: none;
+		background-color: transparent;
+		border: none;
+		outline: none;
+		min-width: 60px;
+		text-align: center;
+		font-size: medium;
+		-moz-appearance:textfield;
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+	}
+}
