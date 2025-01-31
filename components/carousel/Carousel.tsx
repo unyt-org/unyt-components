@@ -27,7 +27,8 @@ export const Carousel = blankTemplate<CarouselOptions & { children?: any }>(({it
 				"background": backgroundColor ?? "transparent",
 				...((style ?? {}) as Record<string, string>)
 			}}>
-				<div class="unyt-carousel-items">
+				<div id="scroller" class="unyt-carousel-scroller"/>
+				<div class="unyt-carousel-items" id="items">
 					{items}
 				</div>
 			</div>
@@ -42,6 +43,8 @@ export const Carousel = blankTemplate<CarouselOptions & { children?: any }>(({it
 export class CarouselWrapper extends Component<CarouselOptions & {count: number, items: HTMLElement[]}> {
 	@id carousel!: HTMLDivElement;
 	@id navigation?: HTMLDivElement;
+	@id items: HTMLDivElement;
+	@id scroller: HTMLDivElement;
 	@id left?: HTMLSpanElement;
 	@id right?: HTMLSpanElement;
 
@@ -53,9 +56,56 @@ export class CarouselWrapper extends Component<CarouselOptions & {count: number,
 		delete this.properties.items;
 	}
 
+	private handleDrag() {
+		const getTransformX = (element: HTMLElement) => {
+			const style = globalThis.getComputedStyle(element)
+			const matrix = new DOMMatrixReadOnly(style.transform);
+			return matrix.m41;
+		}
+		const pointerDrag = (scroller: HTMLElement, items: HTMLElement) => {
+			let startOffset: number | undefined = undefined;
+			let dragOffset = 0;
+			const move = (event: PointerEvent) => {
+				if (startOffset == undefined)
+					return;
+				dragOffset += event.movementX;
+				items.style.transform = `translateX(${startOffset + dragOffset}px)`;
+
+				if (Math.abs(dragOffset) > 100) {
+					if (dragOffset > 0)
+						this.previous();
+					else
+						this.next();
+					release(event);
+				}
+			};
+			const release = (event: PointerEvent) => {
+				startOffset = undefined;
+				dragOffset = 0;
+				scroller.releasePointerCapture(event.pointerId);
+				this.items.classList.toggle("dragging", false);
+				this.items.style.transform = "";
+			}
+			scroller.addEventListener("click", (event) => {
+				console.log("click")
+			})
+			scroller.addEventListener("pointerdown", (event: PointerEvent) => {
+				items.classList.toggle("dragging", true);
+				scroller.setPointerCapture(event.pointerId);
+				startOffset = getTransformX(items);
+			});
+			scroller.addEventListener("pointermove", (event: PointerEvent) => {
+				scroller.hasPointerCapture(event.pointerId) && move(event);
+			});
+			scroller.addEventListener("pointerup", release);
+		};
+		pointerDrag(this.scroller, this.items);
+	}
+
 	override onDisplay() {
 		this.index = this.properties.index ?? 0;
 		this.update();
+		this.handleDrag();
 
 		if (!this.properties.disableAutoplay)
 			this.startAutoplay();
