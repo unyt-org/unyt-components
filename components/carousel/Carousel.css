@@ -91,3 +91,25 @@
 		}
 	}
 }
+
+uix-popover-wrapper {
+	background-color: red;
+	max-width: 600px;
+	.popover-actions {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 20px;
+		button {
+			padding: 10px 20px;
+			margin: 0 10px;
+			border: 1px solid var(--unyt-border-primary);
+			background-color: var(--unyt-bg-controls);
+			border-radius: 999px;
+			cursor: pointer;
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+	}
+}

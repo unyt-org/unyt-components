@@ -1,6 +1,7 @@
 import { Component } from "uix/components/Component.ts";
 import { Icon } from "../../elements/icon/Icon.tsx";
 import { Popover } from "../popover/Popover.tsx";
+import { Button } from "../../elements/button/Button.tsx";
 
 export type CarouselOptions = {
 	items?: HTMLElement[];
@@ -22,7 +23,13 @@ export const Carousel = blankTemplate<CarouselOptions & { children?: any }>(({it
 @template(function({style, disableNavigation, backgroundColor, navigationColor, disableArrows, items}) {
 	return <shadow-root>
 		<link rel="stylesheet" href={"../../theme/unyt.css"}/>
-		<Popover id="popover"/>
+		<Popover id="popover">
+			<div class="popover-content"/>
+			<div class="popover-actions">
+				<Button id="plus">+</Button>
+				<Button id="minus">-</Button>
+			</div>
+		</Popover>
 		<div id="carousel" class="unyt-carousel" style={{"--carousel-text-primary": navigationColor ?? ""}} stylesheet={"./Carousel.css"}>
 			{disableArrows ? null : <Icon name="fa-chevron-left" id="left"/>}
 			<div class="unyt-carousel-content" style={{
@@ -108,51 +115,17 @@ export class CarouselWrapper extends Component<CarouselOptions & {count: number,
 	private showPopup() {
 		if (this.popover?.matches(':popover-open'))
 			return;
-		this.popover?.replaceChildren(this.items.children[this.index].cloneNode(true));
+		this.popover?.querySelector(".popover-content")?.replaceChildren(this.items.children[this.index].cloneNode(true));
 		this.popover?.showPopover();
-
-
-		const allowZoom = (element: HTMLElement) => {
-			let scale = 1;
-			let lastScale = 1;
-			element.addEventListener('touchstart', handleTouchStart, { passive: false });
-			element.addEventListener('touchmove', handleTouchMove, { passive: false });
-			element.addEventListener('touchend', handleTouchEnd);
-			
-			let initialTouchDistance = 0;
-			let touchStartDistance = 0;
-			
-			function handleTouchStart(e: TouchEvent) {
-				if (e.touches.length === 2) {
-					touchStartDistance = getDistanceBetweenTouches(e);
-					initialTouchDistance = touchStartDistance;
-				}
-			}
-			
-			function handleTouchMove(e: TouchEvent) {
-				if (e.touches.length === 2) {
-					const currentTouchDistance = getDistanceBetweenTouches(e);
-					scale = (currentTouchDistance / initialTouchDistance) * lastScale;
-					element.style.transform = `scale(${scale})`;
-				}
-			}
-			
-			function handleTouchEnd(e: TouchEvent) {
-				if (e.touches.length < 2) {
-					lastScale = scale;
-				}
-			}
-			
-			function getDistanceBetweenTouches(e: TouchEvent) {
-				const dx = e.touches[0].clientX - e.touches[1].clientX;
-				const dy = e.touches[0].clientY - e.touches[1].clientY;
-				return Math.sqrt(dx * dx + dy * dy);
-			}
-		}
 
 		const img = this.popover?.querySelector("img");
 		if (img)
-			allowZoom(img);	
+			import("./pinch-zoom.ts").then((zoom) => {
+				const panzoom = zoom.default(img, {});
+				this.popover!.querySelector<HTMLButtonElement>("#minus")!.onclick = panzoom.zoomOut;
+				this.popover!.querySelector<HTMLButtonElement>("#plus")!.onclick = panzoom.zoomIn;
+				this.popover!.querySelector<HTMLInputElement>("#zoom")!.oninput = (e) => panzoom.zoom(e.target.valueAsNumber);
+			});
 	}
 
 	override onDisplay() {
