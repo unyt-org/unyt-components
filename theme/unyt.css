@@ -58,7 +58,9 @@ progress {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 }
-
+* {
+	color: inherit;
+}
 *, *::before, *::after {
 	box-sizing: border-box;
 }

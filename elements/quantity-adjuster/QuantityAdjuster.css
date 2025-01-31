@@ -13,7 +13,11 @@
 		background-color: transparent;
 		outline: none;
 		border: none;
-		width: 30px;
+		justify-content: center;
+		align-items: center;
+		display: flex;
+		padding: 0px 12px;
+		margin: 0;
 		text-align: center;
 		font-size: medium;
 		cursor: pointer;
