@@ -93,19 +93,21 @@
 }
 
 uix-popover-wrapper {
-	background-color: red;
 	max-width: 600px;
 	.popover-actions {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		margin-top: 20px;
+		margin-bottom: 20px;
 		button {
-			padding: 10px 20px;
+			padding: 10px;
 			margin: 0 10px;
 			border: 1px solid var(--unyt-border-primary);
 			background-color: var(--unyt-bg-controls);
 			border-radius: 999px;
+			aspect-ratio: 1;
+			font-size: large;
 			cursor: pointer;
 			&:hover {
 				opacity: 0.8;

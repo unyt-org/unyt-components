@@ -26,8 +26,8 @@ export const Carousel = blankTemplate<CarouselOptions & { children?: any }>(({it
 		<Popover id="popover">
 			<div class="popover-content"/>
 			<div class="popover-actions">
-				<Button id="plus">+</Button>
-				<Button id="minus">-</Button>
+				<Button id="minus"><Icon name="fa-minus"/></Button>
+				<Button id="plus"><Icon name="fa-add"/></Button>
 			</div>
 		</Popover>
 		<div id="carousel" class="unyt-carousel" style={{"--carousel-text-primary": navigationColor ?? ""}} stylesheet={"./Carousel.css"}>
