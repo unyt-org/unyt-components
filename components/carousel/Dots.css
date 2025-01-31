@@ -20,8 +20,8 @@
 		&:active {
 			transform: scale(0.9);
 		}
-		&.active {
-			opacity: 0.8;
-		}
 	}
+}
+span.active {
+	opacity: 0.8;
 }

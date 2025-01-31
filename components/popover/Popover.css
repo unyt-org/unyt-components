@@ -17,9 +17,9 @@
 	outline: none;
 	&:popover-open {
 		display: block;
-		&::backdrop {
+		/* &::backdrop {
 			backdrop-filter: blur(7px) brightness(0.2) contrast(1.2);
-		}
+		} */
 	}
 }
 :host * {

@@ -1,5 +1,6 @@
 import { Component } from "uix/components/Component.ts";
 import { Icon } from "../../elements/icon/Icon.tsx";
+import { Popover } from "../popover/Popover.tsx";
 
 export type CarouselOptions = {
 	items?: HTMLElement[];
@@ -21,6 +22,7 @@ export const Carousel = blankTemplate<CarouselOptions & { children?: any }>(({it
 @template(function({style, disableNavigation, backgroundColor, navigationColor, disableArrows, items}) {
 	return <shadow-root>
 		<link rel="stylesheet" href={"../../theme/unyt.css"}/>
+		<Popover id="popover"/>
 		<div id="carousel" class="unyt-carousel" style={{"--carousel-text-primary": navigationColor ?? ""}} stylesheet={"./Carousel.css"}>
 			{disableArrows ? null : <Icon name="fa-chevron-left" id="left"/>}
 			<div class="unyt-carousel-content" style={{
@@ -34,7 +36,7 @@ export const Carousel = blankTemplate<CarouselOptions & { children?: any }>(({it
 			</div>
 			{disableArrows ? null : <Icon name="fa-chevron-right" id="right"/>}
 		</div>
-		{disableNavigation ? null : <div style={{"--ui-color": navigationColor ?? ""}} stylesheet={"./Dots.css"} id="navigation" class="unyt-carousel-navigation">
+		{disableNavigation ? null : <div style={{[navigationColor ? "--ui-color" : ""]: navigationColor}} stylesheet={"./Dots.css"} id="navigation" class="unyt-carousel-navigation">
 				{items.map((_, i) => <span class="unyt-carousel-dot" data-index={i}/>)}
 		</div>}
 	</shadow-root>
@@ -47,6 +49,7 @@ export class CarouselWrapper extends Component<CarouselOptions & {count: number,
 	@id scroller: HTMLDivElement;
 	@id left?: HTMLSpanElement;
 	@id right?: HTMLSpanElement;
+	@id popover?: HTMLDivElement;
 
 	private index = 0;
 	private timeout?: number;
@@ -86,8 +89,8 @@ export class CarouselWrapper extends Component<CarouselOptions & {count: number,
 				this.items.classList.toggle("dragging", false);
 				this.items.style.transform = "";
 			}
-			scroller.addEventListener("click", (event) => {
-				console.log("click")
+			scroller.addEventListener("click", () => {
+				this.showPopup();
 			})
 			scroller.addEventListener("pointerdown", (event: PointerEvent) => {
 				items.classList.toggle("dragging", true);
@@ -100,6 +103,56 @@ export class CarouselWrapper extends Component<CarouselOptions & {count: number,
 			scroller.addEventListener("pointerup", release);
 		};
 		pointerDrag(this.scroller, this.items);
+	}
+
+	private showPopup() {
+		if (this.popover?.matches(':popover-open'))
+			return;
+		this.popover?.replaceChildren(this.items.children[this.index].cloneNode(true));
+		this.popover?.showPopover();
+
+
+		const allowZoom = (element: HTMLElement) => {
+			let scale = 1;
+			let lastScale = 1;
+			element.addEventListener('touchstart', handleTouchStart, { passive: false });
+			element.addEventListener('touchmove', handleTouchMove, { passive: false });
+			element.addEventListener('touchend', handleTouchEnd);
+			
+			let initialTouchDistance = 0;
+			let touchStartDistance = 0;
+			
+			function handleTouchStart(e: TouchEvent) {
+				if (e.touches.length === 2) {
+					touchStartDistance = getDistanceBetweenTouches(e);
+					initialTouchDistance = touchStartDistance;
+				}
+			}
+			
+			function handleTouchMove(e: TouchEvent) {
+				if (e.touches.length === 2) {
+					const currentTouchDistance = getDistanceBetweenTouches(e);
+					scale = (currentTouchDistance / initialTouchDistance) * lastScale;
+					element.style.transform = `scale(${scale})`;
+				}
+			}
+			
+			function handleTouchEnd(e: TouchEvent) {
+				if (e.touches.length < 2) {
+					lastScale = scale;
+				}
+			}
+			
+			function getDistanceBetweenTouches(e: TouchEvent) {
+				const dx = e.touches[0].clientX - e.touches[1].clientX;
+				const dy = e.touches[0].clientY - e.touches[1].clientY;
+				return Math.sqrt(dx * dx + dy * dy);
+			}
+		}
+
+		const img = this.popover?.querySelector("img");
+		if (img)
+			allowZoom(img);	
 	}
 
 	override onDisplay() {
@@ -122,6 +175,7 @@ export class CarouselWrapper extends Component<CarouselOptions & {count: number,
 			this.right.addEventListener("click", () => this.next());
 		if (this.navigation)
 			this.navigation.addEventListener("click", (e) => {
+				console.log(e, "click")
 				const target = e.target as HTMLElement;
 				if (target.classList.contains("unyt-carousel-dot")) {
 					const index = parseInt(target.dataset.index!);
@@ -133,8 +187,12 @@ export class CarouselWrapper extends Component<CarouselOptions & {count: number,
 	private update() {
 		this.carousel.style.setProperty("--index", this.index.toString());
 		if (this.navigation)
-			this.navigation.querySelectorAll(".unyt-carousel-dot").forEach((dot, i) => {
+			this.navigation.querySelectorAll<HTMLDivElement>(".unyt-carousel-dot").forEach((dot, i) => {
 				dot.classList.toggle("active", i === this.index);
+
+				// SaFarI
+				// Like, wtf, Safari is just not updating the style of the dots for some reason
+				dot.style.opacity = (i === this.index) ? "0.8" : "0.1";
 			});
 	}
 
