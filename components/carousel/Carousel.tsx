@@ -126,7 +126,6 @@ export class CarouselWrapper extends Component<CarouselOptions & {disablePopover
 				const panzoom = zoom.default(img, {});
 				this.popover!.querySelector<HTMLButtonElement>("#minus")!.onclick = panzoom.zoomOut;
 				this.popover!.querySelector<HTMLButtonElement>("#plus")!.onclick = panzoom.zoomIn;
-				this.popover!.querySelector<HTMLInputElement>("#zoom")!.oninput = (e) => panzoom.zoom(e.target.valueAsNumber);
 			});
 	}
 
