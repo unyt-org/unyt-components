@@ -20,7 +20,6 @@
 	position: relative;
 	border-radius: 16px;
 	box-sizing: border-box;
-	color: var(--tag-color);
 	font-size: medium;
 	* {
 		color: var(--_tg-text-primary);
