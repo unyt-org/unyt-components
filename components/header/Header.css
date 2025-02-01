@@ -23,7 +23,7 @@
 }
 :host {
 	--hamburger-max-size: 18.5rem;
-
+	display: grid;
 	top: 0;
 	z-index: 100;
 	color: var(--_hd-text-primary);
