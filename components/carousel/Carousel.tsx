@@ -12,6 +12,7 @@ export type CarouselOptions = {
 	index?: number;
 	navigationColor?: string;
 	backgroundColor?: string;
+	disablePopover?: boolean;
 	style?: Record<string, string | number>;
 }
 
@@ -49,7 +50,7 @@ export const Carousel = blankTemplate<CarouselOptions & { children?: any }>(({it
 	</shadow-root>
 })
 @standalone({inheritedFields: ["properties"]})
-export class CarouselWrapper extends Component<CarouselOptions & {count: number, items: HTMLElement[]}> {
+export class CarouselWrapper extends Component<CarouselOptions & {disablePopover?: number, count: number, items: HTMLElement[]}> {
 	@id carousel!: HTMLDivElement;
 	@id navigation?: HTMLDivElement;
 	@id items: HTMLDivElement;
@@ -96,9 +97,10 @@ export class CarouselWrapper extends Component<CarouselOptions & {count: number,
 				this.items.classList.toggle("dragging", false);
 				this.items.style.transform = "";
 			}
-			scroller.addEventListener("click", () => {
-				this.showPopup();
-			})
+			if (!this.properties.disablePopover)
+				scroller.addEventListener("click", () => {
+					this.showPopup();
+				});
 			scroller.addEventListener("pointerdown", (event: PointerEvent) => {
 				items.classList.toggle("dragging", true);
 				scroller.setPointerCapture(event.pointerId);

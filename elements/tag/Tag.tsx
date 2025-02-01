@@ -13,7 +13,7 @@ export const Tag = blankTemplate<TagOptions & {children?: any}>(({appearance, ch
 		data-size={large ? "large" : small ? "small" : "medium"}
 		stylesheet={"./Tag.css"}
 		style={{
-			[color ? "tag-text-primary" : ""]: color ?? "transparent",
+			[color ? "--tag-text-primary" : ""]: color ?? "transparent",
 			[backgroundColor ? "--tag-bg-primary" : ""]: backgroundColor ?? "transparent",
 			[borderColor ? "--tag-border-start" : ""]: Array.isArray(borderColor) ? borderColor[0] : (borderColor ?? "transparent"),
 			[borderColor ? "--tag-border-end" : ""]: Array.isArray(borderColor) ? borderColor[1] : (borderColor ?? "transparent"),
