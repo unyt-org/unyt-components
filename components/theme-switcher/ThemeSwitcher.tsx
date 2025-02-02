@@ -39,8 +39,7 @@ export class ThemeSwitcher extends Component<ThemeSwitcherOptions> {
 	@id field!: HTMLFieldSetElement;
 	@id button!: HTMLButtonElement;
 	protected override async onDisplay() {
-		if (!("UIX" in globalThis))
-			await import("uix");
+		await (await import("../../utils/load-uix.ts")).loadUIX();
 		if (this.properties.compact)
 			this.initCompact();
 		else

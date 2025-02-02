@@ -69,10 +69,9 @@ class Sitemap extends Component<{logo?: string | URL | { dark: string | URL, lig
 		if (this.modeToggle)
 			this.handleModeChange();
 		this.topAnchor.onclick = () => this.onScrollTop();
-		if (!("UIX" in globalThis))
-			await import("uix");
 		if (this.languageSelector) {
-			await this.languageSelector.anchored;
+			const UIX = await (await import("../../utils/load-uix.ts")).loadUIX();
+			await this.languageSelector?.anchored;
 			this.languageSelector.onChange((lang) => {
 				if (lang != UIX.language) {
 					UIX.language = lang;
@@ -90,8 +89,8 @@ class Sitemap extends Component<{logo?: string | URL | { dark: string | URL, lig
 	}
 
 	private async handleModeChange() {
-		if (!("UIX" in globalThis))
-			await import("uix");
+		const UIX = await (await import("../../utils/load-uix.ts")).loadUIX();
+
 		this.modeToggle.onToggle((checked) => {
 			UIX.Theme.setMode(checked ? "dark" : "light");
 		})
