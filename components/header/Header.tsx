@@ -151,7 +151,6 @@ export class HeaderWrapper extends Component<HeaderOptions & { left?: HTMLSlotEl
 		onResize();
 	}
 	private hideBanner() {
-		console.log("hide")
 		localStorage.setItem("banner-hidden", "true");
 		this.banner.classList.toggle("visible", false);
 		setTimeout(() => this.banner.remove(), 1000);
