@@ -12,9 +12,9 @@ export type ButtonOptions = {
 );
 
 export const Button = blankTemplate<ButtonOptions & Omit<Partial<HTMLButtonElement>, "children" | "style"> & { children?: any }>(props => 
-	<button stylesheet="./Button.css" data-transparent={props.transparent ?? false} class={["unyt-button", (
+	<button  {...props as any} stylesheet="./Button.css?" data-transparent={props.transparent ?? false} class={["unyt-button", (
 		props.type ? props.type : (props.primary ? "primary" : "secondary")
-	)].join(" ")} {...props as any}>
+	), ...(props.class ? [props.class] : [])].join(" ")}>
 		{"href" in props ? <Link {...props} disableUnderline/> : <div {...props} data-button-content>
 			{props.children}
 		</div>}

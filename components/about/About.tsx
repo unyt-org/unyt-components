@@ -9,7 +9,7 @@ export type AboutOptions = {
 	link?: LinkOptions;
 	image?: string | URL;
 }
-export const About = blankTemplate<{children?: any} & AboutOptions>((props) => <div stylesheet="./About.css" class="unyt-about">
+export const About = blankTemplate<{children?: any} & AboutOptions>((props) => <div stylesheet="./About.css?" class="unyt-about">
 	<Splitter>
 		<div data-size="1">
 			{props.tag ? <Tag>{props.tag}</Tag> : null}

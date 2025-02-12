@@ -1,4 +1,4 @@
-:scope {
+.unyt-section {
 	--color: var(--unyt-text-primary, #ffffff);
 	--color-secondary: var(--unyt-text-secondary, #b1b1b1);
 	--border-color: var(--unyt-border-primary, hsla(0,0%,100%,.1));

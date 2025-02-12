@@ -12,7 +12,7 @@ export type ToggleSwitchOptions = {
 @template(function({size}) {
 	const id = `switch-${crypto.randomUUID()}`;
 	const checked = this.properties?.checked ?? false;
-	return <div id="toggle-switch" stylesheet={"./ToggleSwitch.css"}>
+	return <div id="toggle-switch" class="unyt-toggle-switch" stylesheet={"./ToggleSwitch.css?"}>
 		{this.properties?.label ? <label id="label" class="label" for={id}>
 			{this.getLabel(val(checked))}
 		</label> : null}

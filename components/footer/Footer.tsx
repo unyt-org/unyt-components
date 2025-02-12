@@ -101,7 +101,7 @@ class Sitemap extends Component<{logo?: string | URL | { dark: string | URL, lig
 	}
 }
 @template(function({legalLink, termsLink, privacyLink, mode, backgroundColor}) {
-	return <div stylesheet="./Navbar.css" data-mode={mode} id="navbar" style={`--bg-color: ${backgroundColor ?? "transparent"}`}>
+	return <div class="unyt-navbar" stylesheet="./Navbar.css?" data-mode={mode} id="navbar" style={`--bg-color: ${backgroundColor ?? "transparent"}`}>
 		<div class="copyright">&copy; <span>{new Date().getFullYear()} unyt.org e.V.</span></div>
 		<div class="tos">
 			<a href={termsLink ?? "https://unyt.org/terms-of-service"} target="_blank">{this.navbarStrings.terms}</a>

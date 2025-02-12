@@ -31,7 +31,7 @@ export const Carousel = blankTemplate<CarouselOptions & { children?: any }>(({it
 				<Button id="plus"><Icon name="fa-add"/></Button>
 			</div>
 		</Popover>
-		<div id="carousel" class="unyt-carousel" style={{"--carousel-text-primary": navigationColor ?? ""}} stylesheet={"./Carousel.css"}>
+		<div id="carousel" class="unyt-carousel" style={{"--carousel-text-primary": navigationColor ?? ""}} stylesheet={"./Carousel.css?"}>
 			{disableArrows ? null : <Icon name="fa-chevron-left" id="left"/>}
 			<div class="unyt-carousel-content" style={{
 				"background": backgroundColor ?? "transparent",
@@ -44,7 +44,7 @@ export const Carousel = blankTemplate<CarouselOptions & { children?: any }>(({it
 			</div>
 			{disableArrows ? null : <Icon name="fa-chevron-right" id="right"/>}
 		</div>
-		{disableNavigation ? null : <div style={{[navigationColor ? "--ui-color" : ""]: navigationColor}} stylesheet={"./Dots.css"} id="navigation" class="unyt-carousel-navigation">
+		{disableNavigation ? null : <div style={{[navigationColor ? "--ui-color" : ""]: navigationColor}} stylesheet={"./Dots.css?"} id="navigation" class="unyt-carousel-navigation">
 				{items.map((_, i) => <span class="unyt-carousel-dot" data-index={i}/>)}
 		</div>}
 	</shadow-root>

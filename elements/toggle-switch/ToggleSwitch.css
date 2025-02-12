@@ -1,4 +1,4 @@
-:scope {
+.unyt-toggle-switch {
 	--_ts-size: var(--toggle-switch-size, 40px);
 	--_ts-border-primary: var(--border-primary, var(--unyt-border-primary));
 	--_ts-text-primary: var(--toggle-switch-text-primary, var(--accent));

@@ -1,4 +1,4 @@
-:scope {
+.unyt-banner {
 	--_bn-border-primary: var(--banner-border-primary, var(--unyt-border-primary));
 	--_bn-text-primary: var(--banner-text-primary, var(--unyt-text-primary));
 	--_bn-text-primary-secondary: var(--banner-text-secondary, var(--unyt-text-secondary));

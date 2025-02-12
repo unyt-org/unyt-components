@@ -1,4 +1,4 @@
-:scope {
+.unyt-carousel {
 	--_ca-text-primary: var(--carousel-text-primary, var(--unyt-text-primary));
 
 	justify-content: center;

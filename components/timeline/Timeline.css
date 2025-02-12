@@ -1,9 +1,9 @@
 @container sidebar (min-width: 700px) {
 	* {
-	  background-color: red;
+	  /*background-color: red;*/
 	}
 }
-:scope {
+.unyt-timeline {
 	--_tl-text-primary: var(--timeline-text-primary, var(--unyt-text-primary));
 	--_tl-text-secondary: var(--timeline-text-secondary, var(--unyt-text-secondary));
 	--_tl-gap: var(--timeline-gap, 30px);

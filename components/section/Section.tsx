@@ -13,7 +13,7 @@ export type SectionOptions = {
 export const Section = blankTemplate<SectionOptions & {children?: any }>(({medium, description, backgroundColor, large, tag, pos, align, title, children, ...props}) => 
 	<section {...props} style={{
 		"--section-bg": backgroundColor ?? "transparent",
-	}} data-size={large ? "large" : medium ? "medium" : "default"} data-pos={pos ?? "center"} data-align={align ?? "center"} stylesheet="./Section.css">
+	}} data-size={large ? "large" : medium ? "medium" : "default"} data-pos={pos ?? "center"} data-align={align ?? "center"} class={["unyt-section", ...(props.class ? [props.class] : [])].join(" ")} stylesheet="./Section.css?">
 		<div class="inner">
 			{tag ? <Tag>{tag}</Tag> : null}
 			{title ? <h1 class={large ? "large" : ""}>{title}</h1> : null}

@@ -1,4 +1,4 @@
-:scope {
+.unyt-link {
 	--_ln-text-primary: var(--link-color, var(--accent));
 	color: var(--_ln-text-primary);
 	text-decoration: none!important;

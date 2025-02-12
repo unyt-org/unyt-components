@@ -14,7 +14,7 @@ export const AmountCard = blankTemplate<AmountCardOptions>(({backgroundColor, co
 		textAlign: props.align ?? "center",
 		...((style ?? {}) as Record<string, string>),
 	};
-	return <div style={defaultStyle} stylesheet={"./AmountCard.css"} class="unyt-amount-card" {...props}>
+	return <div style={defaultStyle} stylesheet={"./AmountCard.css?"} class="unyt-amount-card" {...props}>
 		<h2>{amount}</h2>
 		<GradientText colors={color ?? [
 			["#d2a8ff", 12], ["#f778ba", 42], ["#ff7b72", 84]

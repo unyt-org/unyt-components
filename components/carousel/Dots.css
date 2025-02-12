@@ -1,4 +1,4 @@
-:scope {
+.unyt-carousel-navigation {
 	--_ca-text-primary: var(--carousel-text-primary, var(--unyt-text-primary));
 	max-width: 100%;
 	display: flex;
