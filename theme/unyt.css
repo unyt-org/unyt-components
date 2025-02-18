@@ -62,7 +62,7 @@
 
 textarea,
 select,
-input,
+input:not([type="checkbox"]),
 progress {
 	appearance: none;
 	-webkit-appearance: none;
