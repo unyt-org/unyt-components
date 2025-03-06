@@ -6,7 +6,7 @@ export type SearchbarOptions = {
 	linkLabel?: string;
 	linkTarget?: URL | string;
 	searchbarPlaceholder?: string;
-	searchbarSize: number | string;
+	searchbarSize?: number | string;
 }
 export const Searchbar = blankTemplate<SearchbarOptions>(({searchbarSize, searchbarPlaceholder, disableLink, disableThemeSwitch, linkLabel, linkTarget}) => 
 	<div class="searchbar">
