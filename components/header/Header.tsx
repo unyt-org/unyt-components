@@ -50,7 +50,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 				"--size": `${typeof size === "number" ? `${size}px` : (size ?? '70px')}`,
 				"--bg-color": `${backgroundColor ?? "transparent"}`
 			}}>
-			{disableHamburgerMenu ? null : <HamburgerMenu id="hamburgerMenu" mode={mode ?? "auto"} maxWidth={hamburgerMenuMaxWidth} logo={logo} label={label} navigation={navigation}/>}
+			{disableHamburgerMenu ? null : <HamburgerMenu id="hamburgerMenu" mode={mode ?? "auto"} maxWidth={hamburgerMenuMaxWidth} logo={logo} label={label instanceof HTMLElement ? (label.cloneNode(true) as HTMLElement) : label} navigation={navigation}/>}
 			<a class="header-icon static" href="/" title="Home">
 				<BackgroundImage
 					dark={(typeof logo != "string" && "dark" in logo) ? logo.dark : logo}
@@ -58,7 +58,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 					class={"logo"}
 					mode={mode ?? "auto"}/>
 
-				{label ? <span class="label">{label}</span> : undefined}
+				{label ? (label instanceof HTMLElement ? (label.cloneNode(true) as HTMLElement) : <span class="label">{label}</span>) : undefined}
 			</a>
 			<a class="header-icon" href="/" title="Home">
 				<BackgroundImage
@@ -66,7 +66,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 					light={(typeof logo != "string" && "dark" in logo) ? logo.light : logo}
 					class={"logo"}
 					mode={mode ?? "auto"}/>
-				{label ? <span class="label">{label}</span> : undefined}
+				{label ? (label instanceof HTMLElement ? (label.cloneNode(true) as HTMLElement) : <span class="label">{label}</span>) : undefined}
 			</a>
 			<div id="content" class="content" style={{
 				maxWidth: maxWidth ? (typeof maxWidth === "number" ? `${maxWidth + "px"}` : maxWidth) : "unset",
