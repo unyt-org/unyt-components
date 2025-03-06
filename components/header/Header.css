@@ -216,32 +216,53 @@
 						justify-content: center;
 						gap: 6px;
 					}
-					input[type="search"] {
-						min-width: 250px;
-						font-size: medium;
-						font-family: inherit;
+					&>.searchbox {
 						width: 100%;
-						font-size: 0.875rem;
-						line-height: 1.5rem;
-						padding-right: 0.75rem;
-						justify-content: center;
+						display: flex;
 						height: 40px;
 						margin: auto;
 						align-items: center;
-						outline-offset: -2px;
-						box-sizing: border-box;
+						justify-content: center;
 						background-color: var(--_hd-bg-secondary);
 						border: 1px solid var(--_hd-border-primary);
 						border-radius: 10px;
-						background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22%23999%22%3E%0A%20%20%3Cpath%20d%3D%22M229.66%2C218.34l-50.07-50.06a88.11%2C88.11%2C0%2C1%2C0-11.31%2C11.31l50.06%2C50.07a8%2C8%2C0%2C0%2C0%2C11.32-11.32ZM40%2C112a72%2C72%2C0%2C1%2C1%2C72%2C72A72.08%2C72.08%2C0%2C0%2C1%2C40%2C112Z%22%2F%3E%0A%3C%2Fsvg%3E");
-						background-repeat: no-repeat;
-						background-size: 1em;
-						background-position-y: center;
-						background-position-x: 0.5em;
-						padding-left: 2em;
-						-webkit-appearance: textfield;
-						&:focus {
-							outline: 1px solid var(--accent);
+						gap: 0;
+						overflow: hidden;
+						&>input[type="search"] {
+							height: 100%;
+							min-width: 250px;
+							font-size: medium;
+							font-family: inherit;
+							font-size: 0.875rem;
+							line-height: 1.5rem;
+							padding-right: 0.75rem;
+							outline: none;
+							background-color: transparent;
+							border: none;
+							box-sizing: border-box;
+							background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22%23999%22%3E%0A%20%20%3Cpath%20d%3D%22M229.66%2C218.34l-50.07-50.06a88.11%2C88.11%2C0%2C1%2C0-11.31%2C11.31l50.06%2C50.07a8%2C8%2C0%2C0%2C0%2C11.32-11.32ZM40%2C112a72%2C72%2C0%2C1%2C1%2C72%2C72A72.08%2C72.08%2C0%2C0%2C1%2C40%2C112Z%22%2F%3E%0A%3C%2Fsvg%3E");
+							background-repeat: no-repeat;
+							background-size: 1em;
+							border-right: 1px solid var(--_hd-border-primary);
+							background-position-y: center;
+							background-position-x: 0.5em;
+							padding-left: 2em;
+							-webkit-appearance: textfield;
+							/* &:focus {
+								outline: 1px solid var(--accent);
+							} */
+						}
+						&>button {
+							width: 40px;
+							height: 100%;
+							background-color: transparent;
+							border: none;
+
+							color: var(--_hd-text-primary);
+							cursor: pointer;
+							&:hover {
+								background-color: var(--_hd-bg-primary-hover);
+							}
 						}
 					}
 				}

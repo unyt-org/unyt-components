@@ -14,9 +14,14 @@ export const Searchbar = blankTemplate<SearchbarOptions>(({searchbarSize, search
 			<Icon name="fa-arrow-up-right-from-square"/>
 			<a target="_blank" href={linkTarget ?? "https://unyt.org"}>{linkLabel ?? "unyt.org"}</a>
 		</span>}
-		<input style={{
-			minWidth: searchbarSize ? searchbarSize : "250px",
-		}} name="search" type="search" placeholder={searchbarPlaceholder ?? "Search"}/>
+		<div class="searchbox">
+			<input id="search-input" style={{
+				minWidth: searchbarSize ? searchbarSize : "250px",
+			}} name="search" type="search" placeholder={searchbarPlaceholder ?? "Search"}/>
+			<button id="search-button">
+				<Icon name="fa-search"/>
+			</button>
+		</div>
 		{disableThemeSwitch ? null : <ThemeSwitcher compact/>}
 	</div>
 );
