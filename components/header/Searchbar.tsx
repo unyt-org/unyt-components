@@ -9,15 +9,20 @@ export type SearchbarOptions = {
 	searchbarSize?: number | string;
 	value?: string | number | Ref<number | string>;
 }
-export const Searchbar = blankTemplate<SearchbarOptions>(({value, searchbarSize, searchbarPlaceholder, disableLink, disableThemeSwitch, linkLabel, linkTarget}) => 
-	<div class="searchbar">
+export const Searchbar = blankTemplate<SearchbarOptions>(({value, searchbarSize, searchbarPlaceholder, disableLink, disableThemeSwitch, linkLabel, linkTarget, ...props}) => 
+	<div {...props} class="searchbar">
 		{disableLink ? null : <span>
 			<Icon name="fa-arrow-up-right-from-square"/>
 			<a target="_blank" href={linkTarget ?? "https://unyt.org"}>{linkLabel ?? "unyt.org"}</a>
 		</span>}
-		<input value={value} style={{
-			minWidth: searchbarSize ? searchbarSize : "250px",
-		}} name="search" type="search" placeholder={searchbarPlaceholder ?? "Search"}/>
+		<div class="searchbox">
+			<input value={value} id="search-input" style={{
+				minWidth: searchbarSize ? searchbarSize : "250px",
+			}} name="search" type="search" placeholder={searchbarPlaceholder ?? "Search"}/>
+			<button id="search-button">
+				<Icon name="fa-search"/>
+			</button>
+		</div>
 		{disableThemeSwitch ? null : <ThemeSwitcher compact/>}
 	</div>
 );
