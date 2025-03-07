@@ -18,6 +18,7 @@ export type HeaderOptions = {
 	banner?: string | HTMLElement;
 	disableHoverNavigation?: boolean;
 	iconRight?: string | HTMLElement;
+	stylesheet?: URL | string;
 }
 export type NavigationItem = { title: string | HTMLElement, link?: string, children?: Array<NavigationItem | HTMLElement> }
 
@@ -29,7 +30,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 	return <HeaderWrapper {...props} left={left} right={right}/> as HTMLDivElement
 })
 
-@template(function({ iconRight, disableHoverNavigation, banner, maxWidth, left, right, hamburgerMenuMaxWidth, disableHamburgerMenu, position, navigation, backgroundColor, label, logo, mode, size }) {
+@template(function({ iconRight, disableHoverNavigation, banner, maxWidth, left, right, hamburgerMenuMaxWidth, disableHamburgerMenu, position, navigation, backgroundColor, label, logo, mode, size, stylesheet }) {
 	if (logo === undefined)
 		logo = {
 			dark: "https://cdn.unyt.org/unyt-resources/logos/unyt/text-light-transparent-3.svg",
@@ -38,6 +39,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 	
 	return <shadow-root>
 		<link rel="stylesheet" href={"../../theme/unyt.css"}/>
+		{stylesheet ? <link rel="stylesheet" href={stylesheet}/> : null}
 		{banner ? <div id="banner" class="global-banner" data-mode={mode ?? "auto"} >
 			<div class="content">
 				{banner}
@@ -88,7 +90,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 	</shadow-root>
 })
 @standalone
-export class HeaderWrapper extends Component<HeaderOptions & { left?: HTMLSlotElement, right?: HTMLSlotElement }> {
+export class HeaderWrapper extends Component<HeaderOptions & { stylesheet?: URL | string, left?: HTMLSlotElement, right?: HTMLSlotElement }> {
 	@id header!: HTMLDivElement;
 	@id banner!: HTMLDivElement;
 	@id content!: HTMLDivElement;
