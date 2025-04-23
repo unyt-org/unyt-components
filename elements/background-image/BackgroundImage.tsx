@@ -1,3 +1,5 @@
+import { blankTemplate } from "uix/html/template.ts"
+
 export type BackgroundImageOptions = {
 	dark?: URL | string,
 	light?: URL | string,

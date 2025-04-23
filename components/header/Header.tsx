@@ -4,6 +4,7 @@ import { Path } from "datex-core-legacy/utils/path.ts";
 import { Icon } from "../../elements/icon/Icon.tsx";
 import { ThemeSwitcher } from "../theme-switcher/ThemeSwitcher.tsx";
 import { BackgroundImage } from "../../elements/background-image/BackgroundImage.tsx";
+import { blankTemplate, template } from "uix/html/template.ts"
 export type HeaderOptions = {
 	size?: number | string;
 	mode?: "light" | "dark" | "auto";

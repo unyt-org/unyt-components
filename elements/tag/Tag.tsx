@@ -1,3 +1,5 @@
+import { blankTemplate } from "uix/html/template.ts"
+
 export type TagOptions = {
 	text?: string | HTMLElement,
 	large?: boolean,
