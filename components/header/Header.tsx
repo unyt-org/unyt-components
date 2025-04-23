@@ -2,9 +2,10 @@ import { Component } from "uix/components/Component.ts";
 import { Selector } from "../../elements/selector/Selector.tsx";
 import { Path } from "datex-core-legacy/utils/path.ts";
 import { Icon } from "../../elements/icon/Icon.tsx";
-import { ThemeSwitcher } from "../theme-switcher/ThemeSwitcher.tsx";
 import { BackgroundImage } from "../../elements/background-image/BackgroundImage.tsx";
 import { blankTemplate, template } from "uix/html/template.ts"
+import { HamburgerMenu } from "./HamburgerMenu.tsx";
+
 export type HeaderOptions = {
 	size?: number | string;
 	mode?: "light" | "dark" | "auto";
@@ -19,84 +20,11 @@ export type HeaderOptions = {
 	banner?: string | HTMLElement;
 	disableHoverNavigation?: boolean;
 	iconRight?: string | HTMLElement;
+	stylesheet?: URL | string;
 }
 export type NavigationItem = { title: string | HTMLElement, link?: string, children?: Array<NavigationItem | HTMLElement> }
 
 
-@template(function({mode, maxWidth, navigation, logo, label}) {
-	return <>
-		<button id="selector" class="hamburger-menu">
-			<Icon name="fa-bars"/>
-		</button>
-		<div id="dropdown" class="hamburger-dropdown" style={{"--hamburger-max-size": maxWidth ?? "18.5rem"}}>
-			<div class="header">
-				<a class="header-icon" href="/" title="Home">
-					<BackgroundImage
-						dark={(typeof logo != "string" && "dark" in logo) ? logo.dark : logo}
-						light={(typeof logo != "string" && "dark" in logo) ? logo.light : logo}
-						class={"logo"}
-						mode={mode ?? "auto"}/>
-					{label ? <span class="label">{label}</span> : undefined}
-				</a>
-				<button id="close" class="close">
-					<Icon name="fa-times"/>
-				</button>
-			</div>
-			<div class="navigation-container">
-				{this.getNavigation(navigation)}
-			</div>
-			<div class="footer">
-				<a href="https://unyt.org" target={"_blank"}>
-					<Icon name="fa-square-up-right"/> unyt.org
-				</a>
-				<ThemeSwitcher/>
-			</div>
-		</div>
-	</>
-})
-@standalone
-class HamburgerMenu extends Component<{mode?: "dark" | "light" | "auto", maxWidth?: number | string, label?: HTMLElement | string, logo: string | URL | { dark: string | URL; light: string | URL; }, navigation?: Array<NavigationItem>}> {
-	@id selector!: HTMLButtonElement;
-	@id dropdown!: HTMLDivElement;
-	@id close!: HTMLButtonElement;
-
-	protected override onDisplay(): void | Promise<void> {
-		this.close.addEventListener("click", () => {
-			this.dropdown.hidePopover();
-		});
-	}
-
-	private getNavigation(nav?: NavigationItem[]) {
-		if (!nav || !nav.length)
-			return null;
-		const clone = (el?: HTMLElement | string) => el instanceof Element ? 
-			el.cloneNode(true) as HTMLElement :
-			el;
-		return nav.map(({ title, link, children }) => {
-			const isLink = !(children && children.length);
-			return isLink ? <a href={link}>{clone(title)}</a> : <details>
-				<summary>
-					<div class="summary">
-						{clone(title)}
-					</div>
-					<Icon name="fa-chevron-down"/>
-				</summary>
-				<div class="content">
-					{children.map((item) =>
-						(item instanceof Element) ? clone(item) : 
-						<a href={item.link}>
-							{clone(item.title)}
-						</a>
-					)}
-				</div>
-			</details>
-		})
-	}
-	protected override onCreate(): void | Promise<void> {
-		this.dropdown.setAttribute("popover", "");
-		this.selector.setAttribute("popovertarget", "dropdown");
-	}
-}
 
 export const Header = blankTemplate<HeaderOptions & { children?: any}>(({children, ...props}) => {
 	const left = children?.find((child: HTMLElement) => child?.getAttribute("slot") === "left");
@@ -104,7 +32,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 	return <HeaderWrapper {...props} left={left} right={right}/> as HTMLDivElement
 })
 
-@template(function({ iconRight, disableHoverNavigation, banner, maxWidth, left, right, hamburgerMenuMaxWidth, disableHamburgerMenu, position, navigation, backgroundColor, label, logo, mode, size }) {
+@template(function({ iconRight, disableHoverNavigation, banner, maxWidth, left, right, hamburgerMenuMaxWidth, disableHamburgerMenu, position, navigation, backgroundColor, label, logo, mode, size, stylesheet }) {
 	if (logo === undefined)
 		logo = {
 			dark: "https://cdn.unyt.org/unyt-resources/logos/unyt/text-light-transparent-3.svg",
@@ -113,6 +41,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 	
 	return <shadow-root>
 		<link rel="stylesheet" href={"../../theme/unyt.css"}/>
+		{stylesheet ? <link rel="stylesheet" href={stylesheet}/> : null}
 		{banner ? <div id="banner" class="global-banner" data-mode={mode ?? "auto"} >
 			<div class="content">
 				{banner}
@@ -125,7 +54,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 				"--size": `${typeof size === "number" ? `${size}px` : (size ?? '70px')}`,
 				"--bg-color": `${backgroundColor ?? "transparent"}`
 			}}>
-			{disableHamburgerMenu ? null : <HamburgerMenu id="hamburgerMenu" mode={mode ?? "auto"} maxWidth={hamburgerMenuMaxWidth} logo={logo} label={label} navigation={navigation}/>}
+			{disableHamburgerMenu ? null : <HamburgerMenu id="hamburgerMenu" mode={mode ?? "auto"} maxWidth={hamburgerMenuMaxWidth} logo={logo} label={label instanceof HTMLElement ? (label.cloneNode(true) as HTMLElement) : label} navigation={navigation}/>}
 			<a class="header-icon static" href="/" title="Home">
 				<BackgroundImage
 					dark={(typeof logo != "string" && "dark" in logo) ? logo.dark : logo}
@@ -133,7 +62,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 					class={"logo"}
 					mode={mode ?? "auto"}/>
 
-				{label ? <span class="label">{label}</span> : undefined}
+				{label ? (label instanceof HTMLElement ? (label.cloneNode(true) as HTMLElement) : <span class="label">{label}</span>) : undefined}
 			</a>
 			<a class="header-icon" href="/" title="Home">
 				<BackgroundImage
@@ -141,7 +70,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 					light={(typeof logo != "string" && "dark" in logo) ? logo.light : logo}
 					class={"logo"}
 					mode={mode ?? "auto"}/>
-				{label ? <span class="label">{label}</span> : undefined}
+				{label ? (label instanceof HTMLElement ? (label.cloneNode(true) as HTMLElement) : <span class="label">{label}</span>) : undefined}
 			</a>
 			<div id="content" class="content" style={{
 				maxWidth: maxWidth ? (typeof maxWidth === "number" ? `${maxWidth + "px"}` : maxWidth) : "unset",
@@ -163,7 +92,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 	</shadow-root>
 })
 @standalone
-export class HeaderWrapper extends Component<HeaderOptions & { left?: HTMLSlotElement, right?: HTMLSlotElement }> {
+export class HeaderWrapper extends Component<HeaderOptions & { stylesheet?: URL | string, left?: HTMLSlotElement, right?: HTMLSlotElement }> {
 	@id header!: HTMLDivElement;
 	@id banner!: HTMLDivElement;
 	@id content!: HTMLDivElement;
@@ -226,7 +155,6 @@ export class HeaderWrapper extends Component<HeaderOptions & { left?: HTMLSlotEl
 		onResize();
 	}
 	private hideBanner() {
-		console.log("hide")
 		localStorage.setItem("banner-hidden", "true");
 		this.banner.classList.toggle("visible", false);
 		setTimeout(() => this.banner.remove(), 1000);

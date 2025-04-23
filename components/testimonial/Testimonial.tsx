@@ -11,7 +11,7 @@ export type TestimonialOptions = {
 };
 
 export const Testimonial = blankTemplate<TestimonialOptions & { children?: any }>(props => 
-<div stylesheet="./Testimonial.css" class="unyt-testimonial" style={{
+<div stylesheet="./Testimonial.css?" class="unyt-testimonial" style={{
 	"align-items": props.align === "center" ? "center" : props.align === "right" ? "flex-end" : "flex-start",
 	"text-align": props.align ?? "left",
 }}>

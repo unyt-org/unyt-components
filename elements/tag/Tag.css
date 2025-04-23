@@ -1,4 +1,4 @@
-:scope {
+.unyt-tag {
 	--_tg-border-primary: var(--tag-border-primary, var(--unyt-border-primary));
 	--_tg-border-start: var(--tag-border-start, var(--_tg-border-primary));
 	--_tg-border-end: var(--tag-border-end, var(--_tg-border-primary));
@@ -20,7 +20,6 @@
 	position: relative;
 	border-radius: 16px;
 	box-sizing: border-box;
-	color: var(--tag-color);
 	font-size: medium;
 	* {
 		color: var(--_tg-text-primary);

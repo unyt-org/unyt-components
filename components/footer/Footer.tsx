@@ -16,6 +16,9 @@ export type FooterOptions = {
 	disableReload?: boolean;
 	disableLanguageSelector?: boolean;
 	disableModeToggle?: boolean;
+	termsLink?: string | URL;
+	privacyLink?: string | URL;
+	legalLink?: string | URL;
 }
 
 @template(function({mode, logo, disableLanguageSelector, disableModeToggle}) {
@@ -68,10 +71,9 @@ class Sitemap extends Component<{logo?: string | URL | { dark: string | URL, lig
 		if (this.modeToggle)
 			this.handleModeChange();
 		this.topAnchor.onclick = () => this.onScrollTop();
-		if (!("UIX" in globalThis))
-			await import("uix");
 		if (this.languageSelector) {
-			await this.languageSelector.anchored;
+			const UIX = await (await import("../../utils/load-uix.ts")).loadUIX();
+			await this.languageSelector?.anchored;
 			this.languageSelector.onChange((lang) => {
 				if (lang != UIX.language) {
 					UIX.language = lang;
@@ -89,8 +91,8 @@ class Sitemap extends Component<{logo?: string | URL | { dark: string | URL, lig
 	}
 
 	private async handleModeChange() {
-		if (!("UIX" in globalThis))
-			await import("uix");
+		const UIX = await (await import("../../utils/load-uix.ts")).loadUIX();
+
 		this.modeToggle.onToggle((checked) => {
 			UIX.Theme.setMode(checked ? "dark" : "light");
 		})
@@ -100,13 +102,13 @@ class Sitemap extends Component<{logo?: string | URL | { dark: string | URL, lig
 		});
 	}
 }
-@template(function({mode, backgroundColor}) {
-	return <div stylesheet="./Navbar.css" data-mode={mode} id="navbar" style={`--bg-color: ${backgroundColor ?? "transparent"}`}>
+@template(function({legalLink, termsLink, privacyLink, mode, backgroundColor}) {
+	return <div class="unyt-navbar" stylesheet="./Navbar.css?" data-mode={mode} id="navbar" style={`--bg-color: ${backgroundColor ?? "transparent"}`}>
 		<div class="copyright">&copy; <span>{new Date().getFullYear()} unyt.org e.V.</span></div>
 		<div class="tos">
-			<a href="https://unyt.org/terms-of-service" target="_blank">{this.navbarStrings.terms}</a>
-			<a href="https://unyt.org/privacy" target="_blank">{this.navbarStrings.privacy}</a>
-			<a href="https://unyt.org/legal-notice" target="_blank">{this.navbarStrings.about}</a>
+			<a href={termsLink ?? "https://unyt.org/terms-of-service"} target="_blank">{this.navbarStrings.terms}</a>
+			<a href={privacyLink ?? "https://unyt.org/privacy"} target="_blank">{this.navbarStrings.privacy}</a>
+			<a href={legalLink ?? "https://unyt.org/legal-notice"} target="_blank">{this.navbarStrings.about}</a>
 		</div>
 		<div class="references">
 			{this.navbarReferences.map(({name, link, icon}) => <a title={name} href={link}>
@@ -116,12 +118,17 @@ class Sitemap extends Component<{logo?: string | URL | { dark: string | URL, lig
 	</div>
 })
 @standalone
-class Navbar extends Component<{mode?: "auto" | "light" | "dark", backgroundColor?: string}> {
+class Navbar extends Component<{
+	legalLink?: string | URL,
+	termsLink?: string | URL,
+	privacyLink?: string | URL,
+	mode?: "auto" | "light" | "dark",
+	backgroundColor?: string}> {
 	@include navbarReferences!: Array<{name: string, link: URL, icon: string}>;
 	@include navbarStrings!: Record<string, string>;
 }
 
-@template(function({logo, disableLanguageSelector, disableModeToggle, backgroundColor, disableReload, compact, mode}) {
+@template(function({termsLink, privacyLink, legalLink, logo, disableLanguageSelector, disableModeToggle, backgroundColor, disableReload, compact, mode}) {
 	return <shadow-root>
 		<link rel="stylesheet" href={"../../theme/unyt.css"}/>
 		<div id="footer" data-mode={mode ?? "auto"}>
@@ -132,7 +139,13 @@ class Navbar extends Component<{mode?: "auto" | "light" | "dark", backgroundColo
 				disableModeToggle={disableModeToggle ?? false}
 				disableReload={disableReload ?? false}
 				mode={mode ?? "auto"}/>}
-			<Navbar id="navbar" mode={mode ?? "auto"} backgroundColor={backgroundColor}/>
+			<Navbar 
+				id="navbar"
+				mode={mode ?? "auto"}
+				backgroundColor={backgroundColor}
+				termsLink={termsLink ?? "https://unyt.org/terms-of-service"}
+				privacyLink={privacyLink ?? "https://unyt.org/privacy"}
+				legalLink={legalLink ?? "https://unyt.org/legal-notice"} />
 		</div>
 	</shadow-root>
 })

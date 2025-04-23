@@ -14,8 +14,7 @@ export const Splitter = blankTemplate<SplitterOptions & { children?: any }>(({ga
 			child.style.flex = child.dataset.size ?? "1";
 	});
 	const alignment = align === "center" ? "center" : align === "end" ? "flex-end" : "flex-start";
-	return <div stylesheet={"./Splitter.css"}
-		class="unyt-splitter"
+	return <div stylesheet={"./Splitter.css?"}
 		style={{
 			"flex-wrap": (horizontal || vertical) ? "nowrap" : "wrap",
 			"flex-direction": direction + (reverse ? "-reverse" : ""),
@@ -24,7 +23,8 @@ export const Splitter = blankTemplate<SplitterOptions & { children?: any }>(({ga
 			"--gap-y": typeof gap === "number" ? gap : gap?.[1] ?? "100px",
 			...((style ?? {}) as Record<string, string>),
 		}}
-		{...props}>
+		{...props}
+		class={["unyt-splitter", ...(props.class ? [props.class] : [])].join(" ")}>
 		{children}
 	</div>
 });

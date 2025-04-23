@@ -21,7 +21,7 @@ export const TimelineItem = blankTemplate<TimelineItemOption & { children?: any 
 );
 
 export const Timeline = blankTemplate<TimelineOptions & { children?: any }>(({style, bulletOffset, gap, offsetX, offsetY, bulletSize, items, children, ...props}) => 
-	<div stylesheet="./Timeline.css" class="unyt-timeline"  style={{
+	<div stylesheet="./Timeline.css?" class="unyt-timeline"  style={{
 		[gap ? "--timeline-gap" : ""]: gap ?? "0",
 		[offsetX ? "--timeline-offset-x" : ""]: offsetX ?? "0",
 		[offsetY ? "--timeline-offset-y" : ""]: offsetY ?? "0",

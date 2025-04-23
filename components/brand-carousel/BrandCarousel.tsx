@@ -5,7 +5,7 @@ export type BrandCarouselOptions = {
 }
 
 export const BrandCarousel = blankTemplate<{children?: any} & BrandCarouselOptions>(({children, style, gap, ...props}) => 
-	<div stylesheet="./BrandCarousel.css" class="unyt-brand-carousel"  {...props} style={{
+	<div stylesheet="./BrandCarousel.css?" class="unyt-brand-carousel"  {...props} style={{
 		...((style ?? {}) as Record<string, string>),
 		[gap ? "--brand-carousel-gap" : ""]: gap ?? "",
 	}}>

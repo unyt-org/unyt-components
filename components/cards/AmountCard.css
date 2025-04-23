@@ -1,4 +1,4 @@
-:scope {
+.unyt-amount-card {
 	--_ca-bg-primary: var(--card-bg-primary, var(--unyt-bg-secondary));
 	--_ca-text-primary: var(--card-text-primary, var(--unyt-text-primary));
 	--_ca-text-secondary: var(--card-text-secondary, var(--unyt-text-secondary));

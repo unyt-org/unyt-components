@@ -46,12 +46,12 @@ export const Card = blankTemplate<CardOptions & {apperance?: string, border?: st
 		data-appearance={appearance ?? "default"}
 		data-size={props.large ? "large" : "default"}
 		data-disable-hover={disableHover ?? false}
-		class={"unyt-card"}
+		{...props}
+		class={["unyt-card", ...(props.class ? [props.class] : [])].join(" ")}
 		href={link?.href}
 		target={link?.target}
 		title={link?.label ?? link?.href}
-		stylesheet={"./Card.css"}
-		{...props}>
+		stylesheet={"./Card.css?"}>
 		{(icon ?? tag) ? <header>
 			{typeof icon === "string" ? <Icon name={icon}/> : icon}
 			{tag ? <Tag>{tag}</Tag> : undefined}

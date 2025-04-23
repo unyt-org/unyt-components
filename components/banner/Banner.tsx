@@ -9,7 +9,7 @@ export type BannerOptions = {
 export const Banner = blankTemplate<BannerOptions & {children?: any}>(props => <div style={{
 	...((props.style ?? {}) as Record<string, string>),
 	"--banner-bg-primary": props.backgroundColor ?? "transparent"
-}} stylesheet={"./Banner.css"} class="unyt-banner" data-size={props.large ? "large" : "default"}>
+}} stylesheet={"./Banner.css?"} class="unyt-banner" data-size={props.large ? "large" : "default"}>
 	<div class="container">
 		<h1>{props.title}</h1>
 		{props.subtitle ? <span>{props.subtitle}</span> : null}

@@ -1,4 +1,4 @@
-:scope {
+.unyt-button {
 	all: unset;
 	--_bt-bg-primary: var(--button-bg-primary, var(--unyt-button-primary));
 	--_bt-text-primary: var(--button-text-primary, var(--unyt-text-primary-inverse));

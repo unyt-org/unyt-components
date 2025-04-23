@@ -1,4 +1,4 @@
-:scope {
+.unyt-splitter {
 	--_gap-x: var(--gap-x, 40px);
 	--_gap-y: var(--gap-y, 100px);
 	

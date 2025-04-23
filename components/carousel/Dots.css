@@ -1,4 +1,4 @@
-:scope {
+.unyt-carousel-navigation {
 	--_ca-text-primary: var(--carousel-text-primary, var(--unyt-text-primary));
 	max-width: 100%;
 	display: flex;
@@ -20,8 +20,8 @@
 		&:active {
 			transform: scale(0.9);
 		}
-		&.active {
-			opacity: 0.8;
-		}
 	}
+}
+span.active {
+	opacity: 0.8;
 }

@@ -1,4 +1,4 @@
-:scope {
+.unyt-about {
 	--_ab-text-primary: var(--accordion-text-primary, var(--unyt-text-primary));
 	--_ab-text-secondary: var(--accordion-text-secondary, var(--unyt-text-secondary));
 	--_ab-border: var(--accordion-border-primary, var(--unyt-border-primary));

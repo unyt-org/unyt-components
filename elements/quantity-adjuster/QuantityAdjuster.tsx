@@ -7,7 +7,7 @@ export type QuantityAdjusterOptions = {
 	value?: number
 }
 export const QuantityAdjuster = blankTemplate<QuantityAdjusterOptions>(function({min, max, value, ...props}) {
-	return <div  {...props} stylesheet={"./QuantityAdjuster.css"} class="unyt-quantity-adjuster">
+	return <div  {...props} stylesheet={"./QuantityAdjuster.css?"} class="unyt-quantity-adjuster">
 		<button type="button" onclick:frontend={(e) => {
 			// @ts-ignore $
 			const input = e.currentTarget?.parentElement.querySelector("input")!;

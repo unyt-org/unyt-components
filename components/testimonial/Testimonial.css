@@ -1,4 +1,4 @@
-:scope {
+.unyt-testimonial {
 	--_te-text-primary: var(--testimonial-text-primary, var(--unyt-text-primary));
 	--_te-text-secondary: var(--testimonial-text-secondary, var(--unyt-text-secondary));
 	--_te-quote-color: var(--testimonial-quote-color, var(--accent));

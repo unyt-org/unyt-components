@@ -1,4 +1,4 @@
-:scope {
+.unyt-brand-carousel {
 	--_bc-gap: var(--brand-carousel-gap, 6rem);
 
 	width: fit-content;
