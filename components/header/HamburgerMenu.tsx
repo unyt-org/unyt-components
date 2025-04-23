@@ -3,6 +3,7 @@ import { NavigationItem } from "./Header.tsx";
 import { ThemeSwitcher } from "../theme-switcher/ThemeSwitcher.tsx";
 import { Icon } from "../../elements/icon/Icon.tsx";
 import { BackgroundImage } from "../../elements/background-image/BackgroundImage.tsx";
+import { template } from "uix/html/template.ts"
 
 @template(function({mode, maxWidth, navigation, logo, label}) {
 	return <>
