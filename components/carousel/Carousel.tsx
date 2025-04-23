@@ -1,5 +1,6 @@
 import { Component } from "uix/components/Component.ts";
 import { Icon } from "../../elements/icon/Icon.tsx";
+import { blankTemplate, template } from "uix/html/template.ts"
 import { Popover } from "../popover/Popover.tsx";
 import { Button } from "../../elements/button/Button.tsx";
 

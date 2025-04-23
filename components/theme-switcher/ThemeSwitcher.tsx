@@ -1,5 +1,7 @@
 import { UIX } from "uix";
 import { Component } from "uix/components/Component.ts";
+import { template } from "uix/html/template.ts"
+
 
 export type ThemeSwitcherOptions = {
 	compact?: boolean;

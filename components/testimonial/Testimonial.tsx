@@ -1,3 +1,4 @@
+import { blankTemplate } from "uix/html/template.ts"
 export type TestimonialOptions = {
 	quote?: string | HTMLElement;
 	align?: "center" | "left" | "right";

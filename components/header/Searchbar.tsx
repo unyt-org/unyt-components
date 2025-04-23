@@ -1,5 +1,7 @@
 import { Icon } from "../../elements/icon/Icon.tsx";
 import { ThemeSwitcher } from "../theme-switcher/ThemeSwitcher.tsx";
+import { blankTemplate } from "uix/html/template.ts"
+
 export type SearchbarOptions = {
 	disableThemeSwitch?: boolean;
 	disableLink?: boolean;

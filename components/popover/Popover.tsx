@@ -1,4 +1,5 @@
 import { Component } from "uix/components/Component.ts";
+import { blankTemplate, template } from "uix/html/template.ts"
 import { ScrollManager } from "./ScrollManager.ts";
 export type PopoverOptions = {
 

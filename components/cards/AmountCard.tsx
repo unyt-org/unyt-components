@@ -1,4 +1,6 @@
 import { GradientText } from '../../elements/text/Text.tsx';
+import { blankTemplate } from "uix/html/template.ts"
+
 export type AmountCardOptions = {
 	title: string | HTMLElement;
 	amount: string | HTMLElement | number;

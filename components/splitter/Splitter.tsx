@@ -1,3 +1,4 @@
+import { blankTemplate } from "uix/html/template.ts"
 export type SplitterOptions = {
 	reverse?: boolean;
 	horizontal?: boolean;

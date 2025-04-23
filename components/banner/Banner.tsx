@@ -1,3 +1,4 @@
+import { blankTemplate } from "uix/html/template.ts"
 export type BannerOptions = {
 	title: string | HTMLElement,
 	subtitle?: string | HTMLElement,

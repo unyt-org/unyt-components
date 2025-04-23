@@ -1,10 +1,12 @@
 import { UIX } from "uix";
-import { include } from "uix/base/decorators.ts";
+import { include, standalone } from "uix/base/decorators.ts";
 import { Component } from "uix/components/Component.ts";
 import { Icon } from "../../elements/icon/Icon.tsx";
 import { ToggleSwitch } from "../../elements/toggle-switch/ToggleSwitch.tsx";
 import { Selector, SelectorWrapper } from "../../elements/selector/Selector.tsx";
 import { BackgroundImage } from "../../elements/background-image/BackgroundImage.tsx";
+import { template } from "uix/html/template.ts"
+
 
 export type FooterOptions = {
 	mode?: "light" | "dark" | "auto";

@@ -1,6 +1,8 @@
 import { Component } from "uix/components/Component.ts";
 import { Icon } from "../icon/Icon.tsx";
 import { Path } from "datex-core-legacy/utils/path.ts";
+import { blankTemplate, template } from "uix/html/template.ts"
+import { style } from "uix/html/style.ts"
 
 export type SelectorOptions = {
 	value?: string | Ref<string>;

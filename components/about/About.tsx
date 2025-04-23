@@ -2,6 +2,7 @@ import { LinkOptions } from '../../elements/link/Link.tsx';
 import { Splitter } from "../splitter/Splitter.tsx";
 import { Button } from '../../elements/button/Button.tsx';
 import { Tag } from '../../elements/tag/Tag.tsx';
+import { blankTemplate } from "uix/html/template.ts"
 export type AboutOptions = {
 	title: string | HTMLElement;
 	description: string | HTMLElement;

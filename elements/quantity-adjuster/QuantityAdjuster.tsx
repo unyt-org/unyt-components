@@ -1,4 +1,5 @@
 import { Icon } from "../icon/Icon.tsx";
+import { blankTemplate } from "uix/html/template.ts"
 
 export type QuantityAdjusterOptions = {
 	min?: number,

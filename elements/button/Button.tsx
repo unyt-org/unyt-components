@@ -1,4 +1,5 @@
 import { Link, LinkOptions } from "../link/Link.tsx";
+import { blankTemplate } from "uix/html/template.ts"
 export type ButtonOptions = {
 	primary?: boolean;
 	secondary?: boolean;

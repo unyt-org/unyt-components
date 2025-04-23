@@ -1,3 +1,4 @@
+import { blankTemplate } from "uix/html/template.ts"
 export type TimelineItemOption = {
 	title?: string | HTMLElement;
 	description?: string | HTMLElement;

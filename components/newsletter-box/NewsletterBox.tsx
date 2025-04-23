@@ -3,6 +3,7 @@ import { Card } from "../cards/Cards.tsx";
 import { Splitter } from '../splitter/Splitter.tsx';
 import { Button } from "../../elements/button/Button.tsx";
 import { Input } from "../../elements/input/Input.tsx";
+import { template } from "uix/html/template.ts"
 
 export type NewsletterBoxOptions = {
 	backgroundColor?: string,

@@ -2,6 +2,7 @@ import { Button, type ButtonOptions } from "../../elements/button/Button.tsx";
 import { Splitter } from '../splitter/Splitter.tsx';
 import { Icon } from "../../elements/icon/Icon.tsx";
 import { Component } from "uix/components/Component.ts";
+import { blankTemplate, template } from "uix/html/template.ts"
 
 export type AlertOptions = {
 	position?: "default" | "left-bottom" | "right-bottom" | "left-top" | "righ-top" | "center-top" | "center-bottom" | "center";

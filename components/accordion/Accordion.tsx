@@ -1,5 +1,7 @@
 import { Component } from "uix/components/Component.ts";
 import { type LinkOptions, Link } from "../../elements/link/Link.tsx";
+import { blankTemplate, template } from "uix/html/template.ts"
+
 
 export type AccordionOptions = {
 	left?: boolean;

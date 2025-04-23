@@ -3,7 +3,9 @@ import { Selector } from "../../elements/selector/Selector.tsx";
 import { Path } from "datex-core-legacy/utils/path.ts";
 import { Icon } from "../../elements/icon/Icon.tsx";
 import { BackgroundImage } from "../../elements/background-image/BackgroundImage.tsx";
+import { blankTemplate, template } from "uix/html/template.ts"
 import { HamburgerMenu } from "./HamburgerMenu.tsx";
+
 export type HeaderOptions = {
 	size?: number | string;
 	mode?: "light" | "dark" | "auto";

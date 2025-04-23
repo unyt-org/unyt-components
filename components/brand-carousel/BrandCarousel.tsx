@@ -1,3 +1,4 @@
+import { blankTemplate } from "uix/html/template.ts"
 export type BrandCarouselOptions = {
 	gap?: number | string;
 	style?: Record<string, string | number>;
