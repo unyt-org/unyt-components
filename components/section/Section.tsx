@@ -1,4 +1,5 @@
 import { Tag } from "../../elements/tag/Tag.tsx";
+import { blankTemplate } from "uix/html/template.ts"
 
 export type SectionOptions = {
 	title?: string | HTMLElement;

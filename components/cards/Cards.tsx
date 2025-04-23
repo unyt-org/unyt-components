@@ -2,6 +2,7 @@ import { Link, type LinkOptions } from "../../elements/link/Link.tsx";
 import { Component } from "uix/components/Component.ts";
 import { Icon } from "../../elements/icon/Icon.tsx";
 import { Tag } from "../../elements/tag/Tag.tsx";
+import { blankTemplate, template } from "uix/html/template.ts"
 
 export type CardOptions = {
 	title?: string,

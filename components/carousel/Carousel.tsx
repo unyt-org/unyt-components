@@ -1,5 +1,6 @@
 import { Component } from "uix/components/Component.ts";
 import { Icon } from "../../elements/icon/Icon.tsx";
+import { blankTemplate } from "uix/html/template.ts"
 
 export type CarouselOptions = {
 	items?: HTMLElement[];

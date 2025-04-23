@@ -1,3 +1,4 @@
+import { template } from "uix/html/template.ts"
 export type GradientTextOptions = {
 	colors: string | string[] | [string, number][];
 	style?: Record<string, string | number>;
