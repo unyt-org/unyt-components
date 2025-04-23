@@ -1,3 +1,5 @@
+import { blankTemplate } from "uix/html/template.ts"
+
 const IDENTIFIER = "UIX-FA";
 export type IconOptions = {
 	name: string,
@@ -16,4 +18,4 @@ export const Icon = blankTemplate<IconOptions>(({name, ...props}) => {
 	return <span
 		class={[`fa ${name}`, ...userClasses].join(" ")}
 		{...props}/>
-});
+}); 
