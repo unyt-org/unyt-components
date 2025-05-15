@@ -7,9 +7,15 @@
 	display: flex;
 	width: 100%;
 	flex-direction: column;
+	height: 100%;
+	overflow-y: auto;
+	margin-top: 10px;
+	transform: translateX(-100px);
+	transition: transform 0.2s;
 
-	details {
+	& details {
 		interpolate-size: allow-keywords;
+
 		&::details-content {
 			transition:
 			block-size 0.3s,
@@ -18,7 +24,7 @@
 			block-size: 0;
 		}
 		&[open] {
-			summary > span {
+			& summary > span {
 				transform: rotate(-180deg);
 			}
 			&::details-content {
@@ -26,54 +32,59 @@
 			}
 		}
 	}
-	summary::-webkit-details-marker {
-		display:none;
-	}
-	summary {
+	& summary {
+		cursor: pointer;
 		display: flex;
 		position: relative;
 		align-items: center;
+		list-style: none;
+		padding: 10px 10px;
+		border-radius: 6px;
+		font-weight: normal;
+		font-size: large;
+
+		&::-webkit-details-marker {
+			display:none;
+		}
 		&>.summary {
 			transition: opacity 0.1s;
 			opacity: 0.8;
 		}
-		&:hover .summary {
-			opacity: 1;
-		}
+
+		&:hover {
+				background-color: var(--_hd-bg-primary-hover);
+				& .summary {
+					opacity: 1;
+				}
+			}
 		&>span {
 			transition: transform 0.2s;
 			position: absolute;
 			font-size: medium;
 			right: 10px;
 		}
+		
+		
 	}
-	summary, a {
+	& a {
+		color: var(--_hd-text-primary);
+		text-decoration: none;
 		list-style: none;
 		padding: 10px 10px;
 		border-radius: 6px;
-		&:hover {
-			background-color: var(--_hd-bg-primary-hover);
+		font-weight: normal;
+		font-size: large;
+			&:hover {
+				background-color: var(--_hd-bg-primary-hover);
+			}
 		}
-	}
-
-	hr {
+	& hr {
 		display: none;
 	}
-	summary {
-		cursor: pointer;
-	}
-	details .content {
+	& details .content {
 		display: flex;
 		margin-left: 20px;
 		flex-direction: column;
-	}
-	a, summary {
-		font-weight: normal;
-		font-size: large;
-	}
-	a {
-		color: var(--_hd-text-primary);
-		text-decoration: none;
 	}
 }
 
@@ -139,27 +150,17 @@
 	}
 	&:popover-open  {
 		opacity: 1;
+		display: flex;
 		@starting-style {
 			opacity: 0;
 		}
-	}
-	&:popover-open .navigation-container {
-		transform: translateX(0);
-		@starting-style {
-			transform: translateX(-100px);
+		& .navigation-container {
+			transform: translateX(0);
+			@starting-style {
+				transform: translateX(-100px);
+			}
 		}
 	}
-	&:popover-open {
-		display: flex;
-	}
-}
-
-.navigation-container {
-	height: 100%;
-	overflow-y: auto;
-	margin-top: 10px;
-	transform: translateX(-100px);
-	transition: transform 0.2s;
 }
 
 button {
@@ -177,7 +178,7 @@ button {
 	align-items: center;
 	margin-right: 6px;
 	background-color: transparent;
-	span {
+	& span {
 		transition: opacity 0.2s, transform 0.2s;
 	}
 	&:hover span {
@@ -186,7 +187,7 @@ button {
 	&:active span {
 		transform: scale(0.9);
 	}
-	span {
+	& span {
 		font-size: 26px;
 	}
 }

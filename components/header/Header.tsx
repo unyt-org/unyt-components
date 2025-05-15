@@ -52,9 +52,9 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 			style={{
 				position: position ?? "unset",
 				"--size": `${typeof size === "number" ? `${size}px` : (size ?? '70px')}`,
-				"--bg-color": `${backgroundColor ?? "transparent"}`
+				"--header-bg-primary": `${backgroundColor ?? "transparent"}`
 			}}>
-			{disableHamburgerMenu ? null : <HamburgerMenu id="hamburgerMenu" mode={mode ?? "auto"} maxWidth={hamburgerMenuMaxWidth} logo={logo} label={label instanceof HTMLElement ? (label.cloneNode(true) as HTMLElement) : label} navigation={navigation}/>}
+			{disableHamburgerMenu ? null : <HamburgerMenu stylesheet="./HamburgerMenu.css?" id="hamburgerMenu" mode={mode ?? "auto"} maxWidth={hamburgerMenuMaxWidth} logo={logo} label={label instanceof HTMLElement ? (label.cloneNode(true) as HTMLElement) : label} navigation={navigation}/>}
 			<a class="header-icon static" href="/" title="Home">
 				<BackgroundImage
 					dark={(typeof logo != "string" && "dark" in logo) ? logo.dark : logo}
