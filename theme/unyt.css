@@ -103,3 +103,39 @@ a, a:visited {
 	color: var(--accent);
 	text-underline-position: under;
 }
+
+.animate {
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity 0.6s ease, transform 0.6s ease;
+
+	&:nth-child(1) {
+		animation-delay: 0.1s;
+	}
+	&:nth-child(2) {
+		animation-delay: 0.2s; 
+	}
+	&:nth-child(3) {
+		animation-delay: 0.3s; 
+	}
+
+	&.left {
+		transform: translateX(-50px);
+
+		&.animate-on {
+			transform: translateX(0);
+		}
+	}
+
+	&.right {
+		transform: translateX(50px);
+
+		&.animate-on {
+			transform: translateX(0);
+		}
+	}
+	&.animate-on {
+	opacity: 1;
+	transform: translateY(0);
+	}
+}
