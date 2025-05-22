@@ -178,6 +178,7 @@ uix-hamburger-menu > button, uix-hamburger-menu .close {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	color: var(--_hd-text-primary);
 	margin-right: 6px;
 	background-color: transparent;
 	& span {
