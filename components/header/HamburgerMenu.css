@@ -1,9 +1,9 @@
-:host {
+uix-hamburger-menu {
 	display: none;
 	top: 0;
 }
 
-.navigation-container {
+uix-hamburger-menu > .hamburger-dropdown > .navigation-container {
 	display: flex;
 	width: 100%;
 	flex-direction: column;
@@ -49,6 +49,7 @@
 		&>.summary {
 			transition: opacity 0.1s;
 			opacity: 0.8;
+			text-overflow: ellipsis;
 		}
 
 		&:hover {
@@ -59,9 +60,10 @@
 			}
 		&>span {
 			transition: transform 0.2s;
-			position: absolute;
+			position: relative;
 			font-size: medium;
-			right: 10px;
+			margin-left: auto;
+			padding-left: 6px;
 		}
 		
 		
@@ -88,7 +90,7 @@
 	}
 }
 
-.hamburger-dropdown {
+uix-hamburger-menu > .hamburger-dropdown {
 	min-width: min(230px, 100%);
 	overflow: hidden;
 	flex-direction: column;
@@ -163,7 +165,7 @@
 	}
 }
 
-button {
+uix-hamburger-menu > button, uix-hamburger-menu .close {
 	appearance: none;
 	inset: 0;
 	border: 0;
@@ -193,7 +195,7 @@ button {
 }
 
 @media screen and (max-width: 640px) {
-	:host {
+	uix-hamburger-menu {
 		display: flex;
 		position: absolute;
 		left: 0;
