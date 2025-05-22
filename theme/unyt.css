@@ -114,9 +114,9 @@ a, a:visited {
 
 .animate {
     opacity: 0;
-	animation: fadeInUp 0.6s ease forwards;
+	animation: fadeIn 0.4s ease forwards;
 	animation-timeline: view();
-	animation-range: entry 40% cover 50%;
+	animation-range: entry 40% cover 60%;
 
 	&.left {
 		animation-name: fadeInLeft;
@@ -127,47 +127,32 @@ a, a:visited {
 }
 .animate-reverse {
     opacity: 1;
-    animation: fadeOut 0.6s ease forwards;
+    animation: fadeOut 0.4s ease forwards;
     animation-timeline: view();
     animation-range: exit 0% exit 30%; 
 }
-@media (prefers-reduced-motion: no-preference) {
-    .animate {
-        animation: fadeInUp 0.6s ease forwards;
-        animation-timeline: view();
-        animation-range: entry 40% cover 50%;
 
-		&.left {
-			animation-name: fadeInLeft;
-    	}
-
-		&.right {
-			animation-name: fadeInRight;
-		}  
-    }
-	.animate-reverse {
-		opacity: 1;
-		animation: fadeOut 0.6s ease forwards;
-		animation-timeline: view();
-		animation-range: exit 0% exit 30%;  
+@media (prefers-reduced-motion: reduce) {
+	.animate, .animate-reverse {
+		animation: none;
 	}
 }
 
-@keyframes fadeInUp {
-	from { opacity: 0; transform: translateY(20px); }
+@keyframes fadeIn {
+	from { opacity: 0.7; transform: translateY(50px); }
 	to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInLeft {
-	from { opacity: 0; transform: translateX(-50px); }
+	from { opacity: 0; transform: translateX(-100px); }
 	to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes fadeInRight {
-	from { opacity: 0; transform: translateX(50px); }
+	from { opacity: 0; transform: translateX(100px); }
 	to { opacity: 1; transform: translateX(0); }
 }
 @keyframes fadeOut {
-	from {opacity: 1; transform: translateY(20px);}
-	to {opacity: 0; transform: translateY(0);}
+	from {opacity: 1; transform: translateY(50px);}
+	to {opacity: 0.7; transform: translateY(0);}
 }
