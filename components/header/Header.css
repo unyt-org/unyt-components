@@ -27,9 +27,9 @@
 	top: 0;
 	z-index: 100;
 	color: var(--_hd-text-primary);
-	* {
+	/* * {
 		color: var(--_hd-text-primary);
-	}
+	} */
 	&>.global-banner {
 		z-index: 10;
 		display: block;
