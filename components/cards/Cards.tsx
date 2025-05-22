@@ -35,22 +35,26 @@ type AppearanceOptions = {
 
 
 export const Card = blankTemplate<CardOptions & {apperance?: string, border?: string | [string, string], children?: any}>(({appearance, color, children, backgroundColor, disableHover, title, description, link, tag, icon, style, ...props}) => {
-	const Elem = (disableHover && !link) ? "div" : "a";
-	return <Elem style={{
+	return <div style={{
 			...((style ?? {}) as Record<string, string>),
 			[backgroundColor ? "--card-bg-primary" : ""]: backgroundColor ?? "transparent",
 			[color ? "--card-header-color" : ""]: color ?? "transparent",
 			"--card-border-start": "border" in props ? (typeof props.border === "string" ? props.border : props.border?.[0] ?? "var(--card-border-primary)") : "transparent",
 			"--card-border-end": "border" in props ? (typeof props.border === "string" ? props.border : props.border?.[1] ?? "var(--card-border-primary)") : "transparent",
 		}}
+		onclick:frontend={() => {
+			use("standalone", disableHover, link);
+			if (!disableHover && link?.href) 
+				globalThis.open(link.href, link.target ?? "_self");
+		}}
 		data-appearance={appearance ?? "default"}
 		data-size={props.large ? "large" : "default"}
 		data-disable-hover={disableHover ?? false}
 		{...props}
 		class={["unyt-card", ...(props.class ? [props.class] : [])].join(" ")}
-		href={link?.href}
-		target={link?.target}
-		title={link?.label ?? link?.href}
+		// href={link?.href}
+		// target={link?.target}
+		// title={link?.label ?? link?.href}
 		stylesheet={"./Card.css?"}>
 		{(icon ?? tag) ? <header>
 			{typeof icon === "string" ? <Icon name={icon}/> : icon}
@@ -58,9 +62,9 @@ export const Card = blankTemplate<CardOptions & {apperance?: string, border?: st
 		</header> : null}
 		{title ? <h2>{title}</h2> : null}
 		{description ? <div class="description">{description}</div> : null}
-		{link && link.label ? <Link {...link} class="link"/> : undefined}
+		{link && link.label ? <Link {...link} href="" class="link"/> : undefined}
 		{children}
-	</Elem> as HTMLDivElement;
+	</div>;
 });
 
 export const Cards = blankTemplate<CardsOptions & {children?: any}>(({appearance, gap, style, cards, minWidth, children, ...props}) => {
