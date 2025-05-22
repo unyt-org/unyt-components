@@ -14,6 +14,7 @@ export type HeaderOptions = {
 	backgroundColor?: string;
 	position?: "sticky" | "fixed" | "relative" | "absolute";
 	navigation?: Array<NavigationItem>;
+	disableBorder?: boolean;
 	disableHamburgerMenu?: boolean;
 	hamburgerMenuMaxWidth?: number | string;
 	maxWidth?: number | string;
@@ -32,7 +33,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 	return <HeaderWrapper {...props} left={left} right={right}/> as HTMLDivElement
 })
 
-@template(function({ iconRight, disableHoverNavigation, banner, maxWidth, left, right, hamburgerMenuMaxWidth, disableHamburgerMenu, position, navigation, backgroundColor, label, logo, mode, size, stylesheet }) {
+@template(function({ disableBorder, iconRight, disableHoverNavigation, banner, maxWidth, left, right, hamburgerMenuMaxWidth, disableHamburgerMenu, position, navigation, backgroundColor, label, logo, mode, size, stylesheet }) {
 	if (logo === undefined)
 		logo = {
 			dark: "https://cdn.unyt.org/unyt-resources/logos/unyt/text-light-transparent-3.svg",
@@ -48,7 +49,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 			</div>
 			<Icon name="fa-times"/>
 		</div> : null}
-		<div id="header" data-mode={mode ?? "auto"} class="header" 
+		<div id="header" data-mode={mode ?? "auto"} class="header" data-disable-border={disableBorder ?? false} 
 			style={{
 				position: position ?? "unset",
 				"--size": `${typeof size === "number" ? `${size}px` : (size ?? '70px')}`,

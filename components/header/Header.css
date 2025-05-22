@@ -130,9 +130,10 @@
 		box-sizing: border-box;
 		border-bottom: 1px solid transparent;
 		gap: 10px;
-		
-		&.top, &:has(.hamburger-dropdown:popover-open) {
-			border-bottom-color: var(--_hd-border-primary);
+		&:not([data-disable-border]) {
+			&.top, &:has(.hamburger-dropdown:popover-open) {
+				border-bottom-color: var(--_hd-border-primary);
+			}
 		}
 		uix-selector-wrapper {
 			--text-primary: var(--_hd-text-primary);
