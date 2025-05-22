@@ -59,6 +59,10 @@
 	z-index: 1000;
 	backdrop-filter: blur(7px) brightness(0.2) contrast(1.2);
 }
+uix-markdown-wrapper {
+	margin: 0;
+	padding: 0;
+}
 
 textarea,
 select,

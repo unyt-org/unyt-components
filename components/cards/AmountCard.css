@@ -10,6 +10,10 @@
 	border: 1px solid var(--_ca-border-primary);
 	box-sizing: border-box;
 	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	* {
 		color: var(--_ca-text-secondary);
 	}
