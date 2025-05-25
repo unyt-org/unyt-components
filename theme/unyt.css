@@ -92,7 +92,7 @@ html, body {
 	font-family: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Nimbus Sans L", Roboto, "Noto Sans", "Segoe UI", Arial, Helvetica, "Helvetica Neue", sans-serif;
 }
 body {
-	display: contents;
+	display: block; /* contents before, fuck SaFarI*/
 	background-color: var(--unyt-bg-primary);
 	color: var(--unyt-text-primary);
 }
