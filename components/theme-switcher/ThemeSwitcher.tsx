@@ -56,6 +56,7 @@ export class ThemeSwitcher extends Component<ThemeSwitcherOptions> {
 		themeManager.onModeChange((mode)=> {
 			this.button.dataset.mode = mode === "light" ? "dark" : "light";
 		});
+		this.button.dataset.mode = themeManager.mode === "light" ? "dark" : "light";
 	}
 	private async initDefault() {
 		const inputs = Array.from(this.field.querySelectorAll<HTMLInputElement>("input"));

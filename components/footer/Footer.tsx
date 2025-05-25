@@ -99,6 +99,7 @@ class Sitemap extends Component<{logo?: string | URL | { dark: string | URL, lig
 		themeManager.onModeChange((theme)=>{
 			this.modeToggle.setChecked(theme === "dark");
 		});
+		this.modeToggle.setChecked(themeManager.mode === "dark");
 	}
 }
 @template(function({legalLink, termsLink, privacyLink, mode, backgroundColor}) {
