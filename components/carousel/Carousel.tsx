@@ -45,7 +45,7 @@ export const Carousel = blankTemplate<CarouselOptions & { children?: any }>(({it
 			</div>
 			{disableArrows ? null : <Icon name="fa-chevron-right" id="right"/>}
 		</div>
-		{disableNavigation ? null : <div style={{[navigationColor ? "--ui-color" : ""]: navigationColor}} stylesheet={"./Dots.css?"} id="navigation" class="unyt-carousel-navigation">
+		{disableNavigation ? null : <div style={{[navigationColor ? "--ui-color" : "--noop"]: navigationColor}} stylesheet={"./Dots.css?"} id="navigation" class="unyt-carousel-navigation">
 				{items.map((_, i) => <span class="unyt-carousel-dot" data-index={i}/>)}
 		</div>}
 	</shadow-root>

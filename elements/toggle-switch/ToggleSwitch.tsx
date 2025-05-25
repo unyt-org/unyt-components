@@ -17,7 +17,7 @@ export type ToggleSwitchOptions = {
 			{this.getLabel(val(checked))}
 		</label> : null}
 		<label class="toggle-switch" for={id} style={{
-			[size ? "--size" : ""]: size ?? 0
+			[size ? "--size" : "--noop"]: size ?? 0
 		}}>
 			<input
 				id={id}

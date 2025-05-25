@@ -22,11 +22,11 @@ export const TimelineItem = blankTemplate<TimelineItemOption & { children?: any 
 
 export const Timeline = blankTemplate<TimelineOptions & { children?: any }>(({style, bulletOffset, gap, offsetX, offsetY, bulletSize, items, children, ...props}) => 
 	<div stylesheet="./Timeline.css?" class="unyt-timeline"  style={{
-		[gap ? "--timeline-gap" : ""]: gap ?? "0",
-		[offsetX ? "--timeline-offset-x" : ""]: offsetX ?? "0",
-		[offsetY ? "--timeline-offset-y" : ""]: offsetY ?? "0",
-		[bulletSize ? "--timeline-bullet-size" : ""]: bulletSize ?? "0",
-		[bulletOffset ? "--timeline-bullet-offset" : ""]: bulletOffset ?? "0",
+		[gap ? "--timeline-gap" : "--noop"]: gap ?? "0",
+		[offsetX ? "--timeline-offset-x" : "--noop"]: offsetX ?? "0",
+		[offsetY ? "--timeline-offset-y" : "--noop"]: offsetY ?? "0",
+		[bulletSize ? "--timeline-bullet-size" : "--noop"]: bulletSize ?? "0",
+		[bulletOffset ? "--timeline-bullet-offset" : "--noop"]: bulletOffset ?? "0",
 		...((style ?? {}) as Record<string, string>),
 	}} {...props}>
 		{children && children.length ? children : (items ?? []).map(({title, description}) => 

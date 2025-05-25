@@ -12,7 +12,7 @@ export type AmountCardOptions = {
 
 export const AmountCard = blankTemplate<AmountCardOptions>(({backgroundColor, color, title, amount, style, ...props}) => {
 	const defaultStyle = {
-		[backgroundColor ? "--card-bg-primary" : ""]: backgroundColor ?? "transparent", 
+		[backgroundColor ? "--card-bg-primary" : "--noop"]: backgroundColor ?? "transparent", 
 		textAlign: props.align ?? "center",
 		...((style ?? {}) as Record<string, string>),
 	};

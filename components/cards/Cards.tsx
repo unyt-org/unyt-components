@@ -37,8 +37,8 @@ type AppearanceOptions = {
 export const Card = blankTemplate<CardOptions & {apperance?: string, border?: string | [string, string], children?: any}>(({appearance, color, children, backgroundColor, disableHover, title, description, link, tag, icon, style, ...props}) => {
 	return <div style={{
 			...((style ?? {}) as Record<string, string>),
-			[backgroundColor ? "--card-bg-primary" : ""]: backgroundColor ?? "transparent",
-			[color ? "--card-header-color" : ""]: color ?? "transparent",
+			[backgroundColor ? "--card-bg-primary" : "--noop"]: backgroundColor ?? "transparent",
+			[color ? "--card-header-color" : "--noop"]: color ?? "transparent",
 			"--card-border-start": "border" in props ? (typeof props.border === "string" ? props.border : props.border?.[0] ?? "var(--card-border-primary)") : "transparent",
 			"--card-border-end": "border" in props ? (typeof props.border === "string" ? props.border : props.border?.[1] ?? "var(--card-border-primary)") : "transparent",
 		}}
