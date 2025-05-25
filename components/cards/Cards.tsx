@@ -62,7 +62,7 @@ export const Card = blankTemplate<CardOptions & {apperance?: string, border?: st
 		</header> : null}
 		{title ? <h2>{title}</h2> : null}
 		{description ? <div class="description">{description}</div> : null}
-		{link && link.label ? <Link {...link} href="" class="link"/> : undefined}
+		{link && link.label ? <Link {...link} class="link"/> : undefined}
 		{children}
 	</div>;
 });
