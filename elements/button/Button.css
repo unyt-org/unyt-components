@@ -32,11 +32,10 @@
 	&[data-transparent] {
 		background-color: transparent;
 	}
-	transition: filter 0.2s, transform 0.2s;
+	transition: filter 0.2s, transform 0.05s;
 	&:hover {
 		&:not([disabled]) {
 			filter: brightness(0.8);
-			transform: scale(1.02);
 		}
 		&[disabled] {
 			cursor: not-allowed;
@@ -44,7 +43,7 @@
 	}
 	&:active {
 		&:not([disabled]) {
-			transform: scale(1.98);
+			transform: scale(0.98);
 		}
 	}
 	a {
