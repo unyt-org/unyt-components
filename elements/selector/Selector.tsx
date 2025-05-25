@@ -92,11 +92,11 @@ export class SelectorWrapper extends Component<SelectorOptions & {
 	private setValue(value: string) {
 		if (typeof this.value === "string")
 			this.value = value;
-		else 
+		else if (this.value)
 			(this.value as Ref<string>).val = value;
 	}
 	private getValue() {
-		return typeof this.value === "string" ? this.value : (this.value as Ref<string>).val;
+		return typeof this.value === "string" ? this.value : (this.value as Ref<string>)?.val;
 	}
 
 	private getOptionByValue(value?: string) {
