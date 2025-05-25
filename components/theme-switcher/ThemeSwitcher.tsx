@@ -40,22 +40,24 @@ export type ThemeSwitcherOptions = {
 export class ThemeSwitcher extends Component<ThemeSwitcherOptions> {
 	@id field!: HTMLFieldSetElement;
 	@id button!: HTMLButtonElement;
-	protected override async onDisplay() {
-		await (await import("../../utils/load-uix.ts")).loadUIX();
+	protected override onDisplay() {
 		if (this.properties.compact)
 			this.initCompact();
 		else
 			this.initDefault();
 	}
-	private initCompact() {
+	private async initCompact() {
+		const { getThemeManager } = (await import("uix/base/theme-manager.ts" /*lazy*/));
+		const themeManager = getThemeManager();
+
 		this.button.addEventListener("click", () => {
-			UIX.Theme.setMode(UIX.Theme.mode === "light" ? "dark" : "light");
+			themeManager.setMode(themeManager.mode === "light" ? "dark" : "light");
 		});
-		effect(() => {
-			this.button.dataset.mode = val(UIX.Theme.$.mode) === "light" ? "dark" : "light";
+		themeManager.onModeChange((mode)=> {
+			this.button.dataset.mode = mode === "light" ? "dark" : "light";
 		});
 	}
-	private initDefault() {
+	private async initDefault() {
 		const inputs = Array.from(this.field.querySelectorAll<HTMLInputElement>("input"));
 		inputs.forEach((input) => {
 			input.addEventListener("input", () => {
@@ -70,8 +72,10 @@ export class ThemeSwitcher extends Component<ThemeSwitcherOptions> {
 			});
 		});
 
-		effect(() => {
-			const mode = val(UIX.Theme.$.mode);
+		const { getThemeManager } = (await import("uix/base/theme-manager.ts" /*lazy*/));
+		const themeManager = getThemeManager();
+		
+		themeManager.onModeChange((mode) => {
 			const selected = inputs.find((input) => input.checked)?.value;
 			if (mode !== selected && selected !== "system")
 				inputs.forEach(e => e.checked = e.value === mode);

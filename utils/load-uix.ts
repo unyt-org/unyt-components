@@ -4,9 +4,9 @@ declare global {
 	var UIX: typeof import("uix") | undefined;
 }
 
-export const loadUIX = (): Promise<typeof import("uix")> => {
+export const loadUIX = (): Promise<typeof UIX> => {
 	if (globalThis.UIX)
-		return globalThis.UIX;
+		return globalThis.UIX!;
 	if (globalThis.uixLoadingPromise) 
 		return globalThis.uixLoadingPromise;
 	// deno-lint-ignore no-async-promise-executor

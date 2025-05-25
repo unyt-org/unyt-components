@@ -66,7 +66,7 @@ export class SelectorWrapper extends Component<SelectorOptions & {
 	@id label?: HTMLDivElement;
 	@id dropdown!: HTMLDivElement;
 
-	public value!: Ref<string>;
+	public value!: string | Ref<string>;
 
 	protected override onCreate(): void | Promise<void> {
 		// @ts-ignore $
@@ -89,6 +89,16 @@ export class SelectorWrapper extends Component<SelectorOptions & {
 		initialOption.classList.add("active");
 	}
 
+	private setValue(value: string) {
+		if (typeof this.value === "string")
+			this.value = value;
+		else 
+			(this.value as Ref<string>).val = value;
+	}
+	private getValue() {
+		return typeof this.value === "string" ? this.value : (this.value as Ref<string>).val;
+	}
+
 	private getOptionByValue(value?: string) {
 		const fallback = this.dropdown.querySelector(".option") as HTMLDivElement | undefined;
 		if (!value)
@@ -97,12 +107,12 @@ export class SelectorWrapper extends Component<SelectorOptions & {
 	}
 
 	private selectValue(value?: string) {
-		if (value && this.value === value)
+		if (value && this.getValue() === value)
 			return;
 		const option = this.getOptionByValue(value);
 		this.dropdown.querySelectorAll(".option").forEach((other) => other.classList.toggle("active", other === option));
 		if (option) {
-			if (this.value) this.value.val = value ?? '';
+			if (this.getValue()) this.setValue(value ?? '');
 			if (this.label) this.label.textContent = option.innerText ?? '';
 		}
 	}
@@ -120,30 +130,29 @@ export class SelectorWrapper extends Component<SelectorOptions & {
 		});
 	}
 
-	protected override async onDisplay() {
+	protected override onDisplay() {
 		if (!this.dropdown)
 			return;
 		if (this.properties.openOnHover)
 			this.listenForHover();
 
 		this.callbacks = new Set();
-		if (!("Datex" in globalThis))
-			await import("datex-core-legacy");
-
-		this.value = typeof this.properties.value === "string" ? 
-			$(this.properties.value) :
-			this.properties.value ?? $('');
+		if ("Datex" in globalThis) {
+			this.value = typeof this.properties.value === "string" ? 
+				$(this.properties.value) : 
+				this.properties.value ?? $('');
+			effect(() => {
+				use(this);
+				this.selectValue(val(this.value));
+				this.callbacks.forEach((callback) => callback(val(this.value)));
+			});
+		}
 		this.dropdown.querySelectorAll<HTMLDivElement>(".option").forEach((option) => {
 			option.addEventListener("click", () => {
 				this.selectValue(option.dataset.value);
 				if (!this.properties.keepOpen)
 					setTimeout(() => this.dropdown.hidePopover(), this.properties.closeDelay ?? 0);
 			});
-		});
-		effect(() => {
-			use(this);
-			this.selectValue(val(this.value));
-			this.callbacks.forEach((callback) => callback(val(this.value)));
 		});
 	}
 }

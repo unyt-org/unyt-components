@@ -72,7 +72,7 @@ class Sitemap extends Component<{logo?: string | URL | { dark: string | URL, lig
 			this.handleModeChange();
 		this.topAnchor.onclick = () => this.onScrollTop();
 		if (this.languageSelector) {
-			const UIX = await (await import("../../utils/load-uix.ts")).loadUIX();
+			const UIX = await (await import("../../utils/load-uix.ts" /*lazy*/)).loadUIX();
 			await this.languageSelector?.anchored;
 			this.languageSelector.onChange((lang) => {
 				if (lang != UIX.language) {
@@ -91,14 +91,13 @@ class Sitemap extends Component<{logo?: string | URL | { dark: string | URL, lig
 	}
 
 	private async handleModeChange() {
-		const UIX = await (await import("../../utils/load-uix.ts")).loadUIX();
-
+		const { getThemeManager } = (await import("uix/base/theme-manager.ts" /*lazy*/));
+		const themeManager = getThemeManager();
 		this.modeToggle.onToggle((checked) => {
-			UIX.Theme.setMode(checked ? "dark" : "light");
-		})
-		effect(() => {
-			const checked = val(UIX.Theme.$.mode) === "dark";
-			this.modeToggle.setChecked(checked);
+			themeManager.setMode(checked ? "dark" : "light");
+		});
+		themeManager.onModeChange((theme)=>{
+			this.modeToggle.setChecked(theme === "dark");
 		});
 	}
 }
