@@ -112,33 +112,6 @@ a, a:visited {
 }
 
 
-
-.animate {
-    opacity: 0;
-	animation: fadeIn 0.4s ease forwards;
-	animation-timeline: view();
-	animation-range: entry 40% cover 60%;
-
-	&.left {
-		animation-name: fadeInLeft;
-	}
-	&.right {
-		animation-name: fadeInRight;
-	}
-}
-.animate-reverse {
-    opacity: 1;
-    animation: fadeOut 0.4s ease forwards;
-    animation-timeline: view();
-    animation-range: exit 0% exit 30%; 
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.animate, .animate-reverse {
-		animation: none;
-	}
-}
-
 @keyframes fadeIn {
 	from { opacity: 0.7; transform: translateY(50px); }
 	to { opacity: 1; transform: translateY(0); }
@@ -156,4 +129,30 @@ a, a:visited {
 @keyframes fadeOut {
 	from {opacity: 1; transform: translateY(50px);}
 	to {opacity: 0.7; transform: translateY(0);}
+}
+
+.animate {
+	opacity: 0;
+	animation: fadeIn 0.4s ease forwards;
+	animation-timeline: view();
+	animation-range: entry 40% cover 60%;
+
+	&.left {
+		animation-name: fadeInLeft;
+	}
+	&.right {
+		animation-name: fadeInRight;
+	}
+}
+.animate-reverse {
+	opacity: 1;
+	animation: fadeOut 0.4s ease forwards;
+	animation-timeline: view();
+	animation-range: exit 0% exit 30%; 
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.animate, .animate-reverse {
+		animation: none;
+	}
 }
