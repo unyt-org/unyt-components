@@ -80,13 +80,13 @@ export const Cards = blankTemplate<CardsOptions & {children?: any}>(({appearance
 	})}/>
 });
 
-@template(function({cards, appearance, minWidth}) {
+@template(function({cards, appearance, minWidth, ...props}) {
 	return <shadow-root>
 		<link rel="stylesheet" href={"../../theme/unyt.css"}/>
 		<div id="cards"
 			data-apperance={appearance ?? "default"}
 			stylesheet={"./Cards.css"}
-			class={"unyt-cards"}
+			class={["unyt-cards", ...(props.class ? [props.class] : [])].join(" ")}
 			style={{
 				"--min-width": typeof minWidth === "number" ? `${minWidth}px` : (minWidth ?? "200px")
 			}}>
@@ -94,7 +94,7 @@ export const Cards = blankTemplate<CardsOptions & {children?: any}>(({appearance
 		</div>
 	</shadow-root>
 })
-export class CardsWrapper extends Component<{appearance?: string, cards: HTMLDivElement[], minWidth?: number | string}> {
+export class CardsWrapper extends Component<{class?: string, appearance?: string, cards: HTMLDivElement[], minWidth?: number | string}> {
 	@standalone @id cards!: HTMLDivElement;
 
 	@standalone

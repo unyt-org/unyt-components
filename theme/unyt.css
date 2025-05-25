@@ -156,3 +156,213 @@ a, a:visited {
 		animation: none;
 	}
 }
+
+
+/* new animations */
+.build-in-animate {
+    opacity: 0;
+    transition: opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);
+    -ms-transform: scale(.96) translateY(24px);
+    transform: scale(.96) translateY(24px)
+}
+
+.fade-in {
+    opacity: 1;
+    -ms-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    transition-delay: .2s
+}
+
+.build-scale-up {
+    opacity: 0;
+    transition: opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);
+    -ms-transform: scale(.96) translateY(24px);
+    transform: scale(.96) translateY(24px)
+}
+
+.fade-in-animate {
+    opacity: 1;
+    -ms-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0)
+}
+
+.anim-fade-in {
+    animation-name: fade-in;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out
+}
+
+.anim-fade-out,.anim-fade-up {
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out
+}
+
+.anim-fade-in.fast {
+    animation-duration: .3s
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+.anim-fade-out {
+    animation-name: fade-out;
+    animation-duration: 1s
+}
+
+.anim-fade-down,.anim-fade-out.fast,.anim-fade-up {
+    animation-duration: .3s
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+
+.anim-fade-up {
+    opacity: 0;
+    animation-name: fade-up;
+    animation-delay: 1s
+}
+
+.anim-grow-x,.anim-shrink-x {
+    animation-duration: .3s;
+    animation-fill-mode: forwards;
+    animation-delay: .5s
+}
+
+@keyframes fade-up {
+    0% {
+        opacity: .8;
+        transform: translateY(100%)
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+.anim-fade-down {
+    animation-name: fade-down;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in
+}
+
+@keyframes fade-down {
+    0% {
+        opacity: 1;
+        transform: translateY(0)
+    }
+
+    100% {
+        opacity: .5;
+        transform: translateY(100%)
+    }
+}
+
+.anim-grow-x {
+    width: 0%;
+    animation-name: grow-x;
+    animation-timing-function: ease
+}
+
+@keyframes grow-x {
+    to {
+        width: 100%
+    }
+}
+
+.anim-shrink-x {
+    animation-name: shrink-x;
+    animation-timing-function: ease-in-out
+}
+
+@keyframes shrink-x {
+    to {
+        width: 0%
+    }
+}
+
+.anim-scale-in {
+    animation-name: scale-in;
+    animation-duration: .15s;
+    animation-timing-function: cubic-bezier(.2,0,.13,1.5)
+}
+
+@keyframes scale-in {
+    0% {
+        opacity: 0;
+        transform: scale(.5)
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1)
+    }
+}
+
+.anim-pulse {
+    animation-name: pulse;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite
+}
+
+@keyframes pulse {
+    0%,100% {
+        opacity: .3
+    }
+
+    10% {
+        opacity: 1
+    }
+}
+
+.anim-pulse-in {
+    animation-name: pulse-in;
+    animation-duration: .5s
+}
+
+@keyframes pulse-in {
+    0%,100% {
+        transform: scale3d(1,1,1)
+    }
+
+    50% {
+        transform: scale3d(1.1,1.1,1.1)
+    }
+}
+
+.anim-hover-grow,.hover-grow {
+    transition: transform .3s;
+    backface-visibility: hidden
+}
+
+.anim-hover-grow:hover,.hover-grow:hover {
+    -ms-transform: scale(1.025);
+    transform: scale(1.025)
+}
+
+.anim-rotate {
+    animation: rotate-keyframes 1s linear infinite
+}
+
+@keyframes rotate-keyframes {
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+/***/
