@@ -101,5 +101,10 @@
 				}
 			}
 		}
+		@media (max-width: 1100px) {
+			&>.description {
+				width: 100%;
+			}
+		}
 	}
 }
