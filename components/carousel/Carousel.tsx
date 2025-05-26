@@ -25,7 +25,7 @@ export const Carousel = blankTemplate<CarouselOptions & { children?: any }>(({it
 @template(function({style, disableNavigation, backgroundColor, navigationColor, disableArrows, items}) {
 	return <shadow-root>
 		<link rel="stylesheet" href={"../../theme/unyt.css"}/>
-		<Popover id="popover">
+		<Popover id="popoverElem">
 			<div class="popover-content"/>
 			<div class="popover-actions">
 				<Button id="minus"><Icon name="fa-minus"/></Button>
@@ -40,25 +40,26 @@ export const Carousel = blankTemplate<CarouselOptions & { children?: any }>(({it
 			}}>
 				<div id="scroller" class="unyt-carousel-scroller"/>
 				<div class="unyt-carousel-items" id="items">
-					{items}
+					{items as HTMLElement[]}
 				</div>
 			</div>
 			{disableArrows ? null : <Icon name="fa-chevron-right" id="right"/>}
 		</div>
-		{disableNavigation ? null : <div style={{[navigationColor ? "--ui-color" : "--noop"]: navigationColor}} stylesheet={"./Dots.css?"} id="navigation" class="unyt-carousel-navigation">
-				{items.map((_, i) => <span class="unyt-carousel-dot" data-index={i}/>)}
+		{disableNavigation ? null : <div style={{[navigationColor ? "--ui-color" : "--noop"]: navigationColor ?? ""}} stylesheet={"./Dots.css?"} id="navigation" class="unyt-carousel-navigation">
+				{(items as HTMLElement[]).map((_, i) => <span class="unyt-carousel-dot" data-index={i}/>)}
 		</div>}
 	</shadow-root>
 })
 @standalone({inheritedFields: ["properties"]})
-export class CarouselWrapper extends Component<CarouselOptions & {disablePopover?: number, count: number, items: HTMLElement[]}> {
+export class CarouselWrapper extends Component<CarouselOptions & {disablePopover?: boolean, count: number, items: HTMLElement[]}> {
 	@id carousel!: HTMLDivElement;
 	@id navigation?: HTMLDivElement;
-	@id items: HTMLDivElement;
-	@id scroller: HTMLDivElement;
+	@id items!: HTMLDivElement;
+	@id scroller!: HTMLDivElement;
 	@id left?: HTMLSpanElement;
 	@id right?: HTMLSpanElement;
-	@id popover?: HTMLDivElement;
+	// @ts-ignore $
+	@id popoverElem?: HTMLDivElement;
 
 	private index = 0;
 	private timeout?: number;
@@ -116,17 +117,17 @@ export class CarouselWrapper extends Component<CarouselOptions & {disablePopover
 	}
 
 	private showPopup() {
-		if (this.popover?.matches(':popover-open'))
+		if (this.popoverElem?.matches(':popover-open'))
 			return;
-		this.popover?.querySelector(".popover-content")?.replaceChildren(this.items.children[this.index].cloneNode(true));
-		this.popover?.showPopover();
+		this.popoverElem?.querySelector(".popover-content")?.replaceChildren(this.items.children[this.index].cloneNode(true));
+		this.popoverElem?.showPopover();
 
-		const img = this.popover?.querySelector("img");
+		const img = this.popoverElem?.querySelector("img");
 		if (img)
 			import("./pinch-zoom.ts").then((zoom) => {
 				const panzoom = zoom.default(img, {});
-				this.popover!.querySelector<HTMLButtonElement>("#minus")!.onclick = panzoom.zoomOut;
-				this.popover!.querySelector<HTMLButtonElement>("#plus")!.onclick = panzoom.zoomIn;
+				this.popoverElem!.querySelector<HTMLButtonElement>("#minus")!.onclick = panzoom.zoomOut;
+				this.popoverElem!.querySelector<HTMLButtonElement>("#plus")!.onclick = panzoom.zoomIn;
 			});
 	}
 

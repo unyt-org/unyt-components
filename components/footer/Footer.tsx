@@ -72,16 +72,19 @@ class Sitemap extends Component<{logo?: string | URL | { dark: string | URL, lig
 			this.handleModeChange();
 		this.topAnchor.onclick = () => this.onScrollTop();
 		if (this.languageSelector) {
-			const UIX = await (await import("../../utils/load-uix.ts" /*lazy*/)).loadUIX();
+			const UIX = await (await import("../../utils/load-uix.ts" /*lazy*/)).loadUIX() as unknown as { language: string };
 			await this.languageSelector?.anchored;
 			this.languageSelector.onChange((lang) => {
-				if (lang != UIX.language) {
+				if (UIX && lang != UIX.language) {
 					UIX.language = lang;
 					if (!this.properties?.disableReload)
 						globalThis.location.reload();
 				}
 			});
-			this.languageSelector.value.val = UIX.language === "de" ? "de" : "en";
+			if (typeof this.languageSelector.value === "string")
+				this.languageSelector.value = UIX.language === "de" ? "de" : "en";
+			else
+				(this.languageSelector.value as Ref<string>).val = UIX.language === "de" ? "de" : "en";
 		}
 
 	}

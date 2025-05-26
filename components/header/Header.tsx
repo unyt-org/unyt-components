@@ -56,7 +56,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 				"--header-bg-primary": `${backgroundColor ?? "transparent"}`
 			}}>
 			{disableHamburgerMenu ? null : <HamburgerMenu stylesheet="./HamburgerMenu.css?" id="hamburgerMenu" mode={mode ?? "auto"} maxWidth={hamburgerMenuMaxWidth} logo={logo} label={label instanceof HTMLElement ? (label.cloneNode(true) as HTMLElement) : label} navigation={navigation}/>}
-			<a class="header-icon static" href="/" heading="Home">
+			<a class="header-icon static" href="/" title="Home">
 				<BackgroundImage
 					dark={(typeof logo != "string" && "dark" in logo) ? logo.dark : logo}
 					light={(typeof logo != "string" && "dark" in logo) ? logo.light : logo}
@@ -65,7 +65,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 
 				{label ? (label instanceof HTMLElement ? (label.cloneNode(true) as HTMLElement) : <span class="label">{label}</span>) : undefined}
 			</a>
-			<a class="header-icon" href="/" heading="Home">
+			<a class="header-icon" href="/" title="Home">
 				<BackgroundImage
 					dark={(typeof logo != "string" && "dark" in logo) ? logo.dark : logo}
 					light={(typeof logo != "string" && "dark" in logo) ? logo.light : logo}
