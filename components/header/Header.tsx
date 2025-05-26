@@ -23,7 +23,7 @@ export type HeaderOptions = {
 	iconRight?: string | HTMLElement;
 	stylesheet?: URL | string;
 }
-export type NavigationItem = { title: string | HTMLElement, link?: string, children?: Array<NavigationItem | HTMLElement> }
+export type NavigationItem = { heading: string | HTMLElement, link?: string, children?: Array<NavigationItem | HTMLElement> }
 
 
 
@@ -56,7 +56,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 				"--header-bg-primary": `${backgroundColor ?? "transparent"}`
 			}}>
 			{disableHamburgerMenu ? null : <HamburgerMenu stylesheet="./HamburgerMenu.css?" id="hamburgerMenu" mode={mode ?? "auto"} maxWidth={hamburgerMenuMaxWidth} logo={logo} label={label instanceof HTMLElement ? (label.cloneNode(true) as HTMLElement) : label} navigation={navigation}/>}
-			<a class="header-icon static" href="/" title="Home">
+			<a class="header-icon static" href="/" heading="Home">
 				<BackgroundImage
 					dark={(typeof logo != "string" && "dark" in logo) ? logo.dark : logo}
 					light={(typeof logo != "string" && "dark" in logo) ? logo.light : logo}
@@ -65,7 +65,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 
 				{label ? (label instanceof HTMLElement ? (label.cloneNode(true) as HTMLElement) : <span class="label">{label}</span>) : undefined}
 			</a>
-			<a class="header-icon" href="/" title="Home">
+			<a class="header-icon" href="/" heading="Home">
 				<BackgroundImage
 					dark={(typeof logo != "string" && "dark" in logo) ? logo.dark : logo}
 					light={(typeof logo != "string" && "dark" in logo) ? logo.light : logo}
@@ -103,18 +103,18 @@ export class HeaderWrapper extends Component<HeaderOptions & { stylesheet?: URL 
 		if (!nav || !nav.length)
 			return null;
 		return <header class="navigation">
-			{nav.map(({ title, link, children }) => {
+			{nav.map(({ heading, link, children }) => {
 				const isLink = !(children && children.length);
 				return <Selector openOnHover={!disableHover} stylesheet={new Path("./Selector.css")} 
 					hideChevron={isLink}
 					hideCheck
 					label={(
-						isLink ? <a href={link}>{title}</a> : <div>{title}</div>
+						isLink ? <a href={link}>{heading}</a> : <div>{heading}</div>
 					) as HTMLElement}>
 					{
 						(children ?? []).map((item) =>
 							item instanceof HTMLElement ? item : <option value={""}>
-								<a href={item.link}>{item.title}</a>
+								<a href={item.link}>{item.heading}</a>
 							</option>
 						)
 	

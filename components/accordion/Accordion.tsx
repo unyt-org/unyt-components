@@ -10,7 +10,7 @@ export type AccordionOptions = {
 	openFirst?: boolean;
 	items?: {
 		opened?: boolean;
-		title: string;
+		heading: string;
 		content: string;
 		link?: LinkOptions
 	}[]
@@ -19,7 +19,7 @@ export type AccordionOptions = {
 export const Accordion = blankTemplate(function(props: {children?: any[] } & AccordionOptions) {
 	const children = props.items ? [
 		...props.items.map((item, index) => <details {...((item.opened || (index === 0 && props.openFirst)) ? {open: ""} : {})}>
-			<summary>{item.title}</summary>
+			<summary>{item.heading}</summary>
 			<div class="content">
 				<p>{item.content}</p>
 				{item.link ? <Link {...item.link} class="link"/> : undefined}

@@ -4,7 +4,7 @@ export type TestimonialOptions = {
 	align?: "center" | "left" | "right";
 	author?: {
 		name: string;
-		title: string;
+		heading: string;
 		subtitle?: string;
 		image: string | URL;
 	}
@@ -21,7 +21,7 @@ export const Testimonial = blankTemplate<TestimonialOptions & { children?: any }
 		<img src={props.author.image} alt={props.author.name}/>
 		<div>
 			<h3>{props.author.name}</h3>
-			<div>{props.author.title} {props.author.subtitle ? <span>• {props.author.subtitle}</span> : null}</div>
+			<div>{props.author.heading} {props.author.subtitle ? <span>• {props.author.subtitle}</span> : null}</div>
 		</div>
 	</div> : null}
 	{props.children && props.children.length ? <div class="bottom">

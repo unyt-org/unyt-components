@@ -5,7 +5,7 @@ import { Tag } from "../../elements/tag/Tag.tsx";
 import { blankTemplate, template } from "uix/html/template.ts"
 
 export type CardOptions = {
-	title?: string,
+	heading?: string,
 	description?: string,
 	link?: LinkOptions,
 	tag?: string,
@@ -34,7 +34,7 @@ type AppearanceOptions = {
 };
 
 
-export const Card = blankTemplate<CardOptions & {apperance?: string, border?: string | [string, string], children?: any}>(({appearance, color, children, backgroundColor, disableHover, title, description, link, tag, icon, style, ...props}) => {
+export const Card = blankTemplate<CardOptions & {apperance?: string, border?: string | [string, string], children?: any}>(({appearance, color, children, backgroundColor, disableHover, heading, description, link, tag, icon, style, ...props}) => {
 	return <div style={{
 			...((style ?? {}) as Record<string, string>),
 			[backgroundColor ? "--card-bg-primary" : "--noop"]: backgroundColor ?? "transparent",
@@ -54,13 +54,13 @@ export const Card = blankTemplate<CardOptions & {apperance?: string, border?: st
 		class={["unyt-card", ...(props.class ? [props.class] : [])].join(" ")}
 		// href={link?.href}
 		// target={link?.target}
-		// title={link?.label ?? link?.href}
+		// heading={link?.label ?? link?.href}
 		stylesheet={"./Card.css?"}>
 		{(icon ?? tag) ? <header>
 			{typeof icon === "string" ? <Icon name={icon}/> : icon}
 			{tag ? <Tag>{tag}</Tag> : undefined}
 		</header> : null}
-		{title ? <h2>{title}</h2> : null}
+		{heading ? <h2>{heading}</h2> : null}
 		{description ? <div class="description">{description}</div> : null}
 		{link && link.label ? <Link {...link} class="link"/> : undefined}
 		{children}

@@ -4,7 +4,7 @@ import { Button } from '../../elements/button/Button.tsx';
 import { Tag } from '../../elements/tag/Tag.tsx';
 import { blankTemplate } from "uix/html/template.ts"
 export type AboutOptions = {
-	title: string | HTMLElement;
+	heading: string | HTMLElement;
 	description: string | HTMLElement;
 	tag?: string | HTMLElement;
 	link?: LinkOptions;
@@ -14,7 +14,7 @@ export const About = blankTemplate<{children?: any} & AboutOptions>((props) => <
 	<Splitter>
 		<div data-size="1">
 			{props.tag ? <Tag>{props.tag}</Tag> : null}
-			{props.title ? <h1>{props.title}</h1> : null}
+			{props.heading ? <h1>{props.heading}</h1> : null}
 			{props.description ? <p>{props.description}</p> : null}
 			{props.link ? <Button {...props.link as any}/> : null}
 		</div>
