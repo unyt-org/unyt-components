@@ -14,7 +14,7 @@
             height: 100%;
             border-radius: 8px;
             padding: 11px;
-            font-size: 14px;
+            font-size: medium;
             &:focus {
                 box-shadow: 0 0 0 0.0625rem var(--unyt-border-primary) inset;
             }

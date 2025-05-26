@@ -18,7 +18,6 @@
 	}
 	&>blockquote {
 		color: var(--_te-text-primary);
-		font-size: 1.5rem;
 		line-height: 1.5;
 		font-weight: 400;
 		margin-inline-start: 0;
