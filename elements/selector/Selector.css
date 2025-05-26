@@ -42,20 +42,22 @@
 	}
 	.select {
 		position: absolute;
-		margin: auto;
 		inset: auto;
 		border: 1px solid var(--_se-border-primary);
 		padding: 0;
 		border-radius: 6px;
-		position-try-fallbacks: --bottom, --left, --right, --top;
+		/* position-try-fallbacks: --bottom, --left, --right, --top;
 		position-anchor: --selector;
 		top: anchor(bottom);
-		left: anchor(left);
+		left: anchor(left); */
 		margin-top: var(--_se-margin);
 		box-sizing: border-box;
 		background-color: var(--_se-bg-primary);
 		gap: 0px;
 		flex-direction: column;
+		left: 140px;
+		margin: 0;
+		top: 60px;
 		.option {
 			background-color: var(--_se-bg-primary);
 			user-select: none;
