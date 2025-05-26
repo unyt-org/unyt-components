@@ -2,7 +2,7 @@ import { GradientText } from '../../elements/text/Text.tsx';
 import { blankTemplate } from "uix/html/template.ts"
 
 export type AmountCardOptions = {
-	title: string | HTMLElement;
+	heading: string | HTMLElement;
 	amount: string | HTMLElement | number;
 	color?: string | string[];
 	backgroundColor?: string,
@@ -10,7 +10,7 @@ export type AmountCardOptions = {
 	align?: "left" | "center" | "right";
 }
 
-export const AmountCard = blankTemplate<AmountCardOptions>(({backgroundColor, color, title, amount, style, ...props}) => {
+export const AmountCard = blankTemplate<AmountCardOptions>(({backgroundColor, color, heading, amount, style, ...props}) => {
 	const defaultStyle = {
 		[backgroundColor ? "--card-bg-primary" : "--noop"]: backgroundColor ?? "transparent", 
 		textAlign: props.align ?? "center",
@@ -20,6 +20,6 @@ export const AmountCard = blankTemplate<AmountCardOptions>(({backgroundColor, co
 		<h2>{amount}</h2>
 		<GradientText colors={color ?? [
 			["#d2a8ff", 12], ["#f778ba", 42], ["#ff7b72", 84]
-		]}>{title}</GradientText>
+		]}>{heading}</GradientText>
 	</div>
 });

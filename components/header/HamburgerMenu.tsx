@@ -54,12 +54,12 @@ export class HamburgerMenu extends Component<{mode?: "dark" | "light" | "auto", 
 		const clone = (el?: HTMLElement | string) => el instanceof Element ? 
 			el.cloneNode(true) as HTMLElement :
 			el;
-		return nav.map(({ title, link, children }) => {
+		return nav.map(({ heading, link, children }) => {
 			const isLink = !(children && children.length);
-			return isLink ? <a href={link}>{clone(title)}</a> : <details>
+			return isLink ? <a href={link}>{clone(heading)}</a> : <details>
 				<summary>
 					<div class="summary">
-						{clone(title)}
+						{clone(heading)}
 					</div>
 					<Icon name="fa-chevron-down"/>
 				</summary>
@@ -67,7 +67,7 @@ export class HamburgerMenu extends Component<{mode?: "dark" | "light" | "auto", 
 					{children.map((item) =>
 						(item instanceof Element) ? clone(item) : 
 						<a href={item.link}>
-							{clone(item.title)}
+							{clone(item.heading)}
 						</a>
 					)}
 				</div>

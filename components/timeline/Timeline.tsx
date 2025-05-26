@@ -1,6 +1,6 @@
 import { blankTemplate } from "uix/html/template.ts"
 export type TimelineItemOption = {
-	title?: string | HTMLElement;
+	heading?: string | HTMLElement;
 	description?: string | HTMLElement;
 }
 export type TimelineOptions = {
@@ -12,9 +12,9 @@ export type TimelineOptions = {
 	bulletOffset?: number | string;
 }
 
-export const TimelineItem = blankTemplate<TimelineItemOption & { children?: any }>(({title, description, children, ...props}) => 
+export const TimelineItem = blankTemplate<TimelineItemOption & { children?: any }>(({heading, description, children, ...props}) => 
 	<div class="unyt-timeline-item" {...props}>
-		{title ? <h3>{title}</h3> : null}
+		{heading ? <h3>{heading}</h3> : null}
 		{description ? <p>{description}</p> : null}
 		{children}
 	</div>
@@ -29,7 +29,7 @@ export const Timeline = blankTemplate<TimelineOptions & { children?: any }>(({st
 		[bulletOffset ? "--timeline-bullet-offset" : "--noop"]: bulletOffset ?? "0",
 		...((style ?? {}) as Record<string, string>),
 	}} {...props}>
-		{children && children.length ? children : (items ?? []).map(({title, description}) => 
-			<TimelineItem title={title as string} description={description}/>)}
+		{children && children.length ? children : (items ?? []).map(({heading, description}) => 
+			<TimelineItem heading={heading as string} description={description}/>)}
 	</div>
 );
