@@ -136,11 +136,11 @@
 			}
 		}
 		uix-selector-wrapper {
-			--text-primary: var(--_hd-text-primary);
-			--bg-primary: var(--_hd-bg-primary);
-			--bg-primary-selected: var(--_hd-bg-primary); /* important to not set first element active*/
-			--bg-primary-hover: var(--_hd-bg-primary-hover);
-			--border-primary: var(--_hd-border-primary);
+			--text-primary: var(--selector-text-primary, var(--_hd-text-primary));
+			--bg-primary: var(--selector-bg-primary, var(--_hd-bg-primary));
+			--bg-primary-selected: var(--selector-bg-primary-selected, var(--_hd-bg-primary)); /* important to not set first element active*/
+			--bg-primary-hover: var(--selector-bg-hover, var(--_hd-bg-primary-hover));
+			--border-primary: var(--selector-border-primary, var(--_hd-border-primary));
 		}
 
 		uix-theme-switcher {
