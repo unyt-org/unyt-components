@@ -13,7 +13,11 @@ export type SelectorOptions = {
 	closeDelay?: number;
 	openOnHover?: boolean;
 	style?: Record<string, string | number>;
-	appearance?: "default" | "filter"
+	appearance?: "default" | "filter",
+	positionX?: "left" | "right";
+	positionY?: "top" | "bottom";
+	marginX?: number;
+	marginY?: number;
 }
 
 export const Selector = blankTemplate<SelectorOptions & {children?: any}>(function(props) {
@@ -135,6 +139,30 @@ export class SelectorWrapper extends Component<SelectorOptions & {
 			return;
 		if (this.properties.openOnHover)
 			this.listenForHover();
+
+		const posX: "left" | "right" | undefined  = this.properties.positionX;
+		const posY: "top" | "bottom" | undefined = this.properties.positionY;
+		const marginX = this.properties.marginX ?? 0;
+		const marginY = this.properties.marginY ?? 0;
+
+		this.dropdown.ontoggle = () => {
+			const rect = this.selector.getBoundingClientRect();
+			let left = 0, top = 0;
+			if (posX === "left")
+				left = rect.left - this.dropdown.offsetWidth - marginX;
+			else if (posX === "right")
+				left = rect.right + marginX;
+			else 
+				left = rect.left + marginX;
+			if (posY == "top")
+				top = rect.top - this.dropdown.offsetHeight - marginY;
+			else if (posY === undefined)
+				top = rect.bottom + marginY;
+			else
+				top = rect.top + marginY;
+			this.dropdown.style.left = `${left}px`;
+			this.dropdown.style.top = `${top}px`;
+		}
 
 		this.callbacks = new Set();
 		if ("Datex" in globalThis) {

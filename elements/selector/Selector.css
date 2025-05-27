@@ -23,7 +23,7 @@
 		appearance: none;
 		background-color: transparent;
 		border: 0;
-		anchor-name: --selector;
+		/* anchor-name: --selector; */
 		/* min-height: 12px;
 		min-width: 20px; */
 		padding: 0;
@@ -55,9 +55,10 @@
 		background-color: var(--_se-bg-primary);
 		gap: 0px;
 		flex-direction: column;
-		left: 140px;
-		margin: 0;
-		top: 60px;
+		position: fixed;
+		/* left: 140px; */
+		/* top: 60px;
+		margin: 0; */
 		.option {
 			background-color: var(--_se-bg-primary);
 			user-select: none;
