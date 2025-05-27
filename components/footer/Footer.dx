@@ -92,7 +92,7 @@ export val sitemapReferences = [
 					en: 'Join us',
 					de: 'Mitmachen'
 				},
-				link: https://unyt.org/join
+				link: https://unyt.org/apply
 			},
 			{
 				name: localtext {
