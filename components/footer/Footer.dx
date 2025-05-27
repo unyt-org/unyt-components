@@ -113,7 +113,7 @@ export val sitemapReferences = [
 					en: 'Contact',
 					de: 'Kontakt'
 				},
-				link: "mailto:support@unyt.org"
+				link: "https://unyt.org/contact"
 			},
 		]
 	},
