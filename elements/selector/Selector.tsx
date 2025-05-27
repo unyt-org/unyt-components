@@ -132,6 +132,9 @@ export class SelectorWrapper extends Component<SelectorOptions & {
 		this.addEventListener("mouseleave", () => {
 			this.dropdown.hidePopover();
 		});
+		globalThis.addEventListener("scroll", () => {
+			this.dropdown.hidePopover();
+		});
 	}
 
 	protected override onDisplay() {
