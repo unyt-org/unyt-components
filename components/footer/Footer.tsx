@@ -6,6 +6,8 @@ import { ToggleSwitch } from "../../elements/toggle-switch/ToggleSwitch.tsx";
 import { Selector, SelectorWrapper } from "../../elements/selector/Selector.tsx";
 import { BackgroundImage } from "../../elements/background-image/BackgroundImage.tsx";
 import { template } from "uix/html/template.ts"
+import { CommonProperties, getString } from "../../utils/localFunctions.ts";
+import { LocaleCode } from "../../utils/locales.ts";
 
 
 export type FooterOptions = {
@@ -109,9 +111,9 @@ class Sitemap extends Component<{logo?: string | URL | { dark: string | URL, lig
 	return <div class="unyt-navbar" stylesheet="./Navbar.css?" data-mode={mode} id="navbar" style={`--bg-color: ${backgroundColor ?? "transparent"}`}>
 		<div class="copyright">&copy; <span>{new Date().getFullYear()} unyt.org e.V.</span></div>
 		<div class="tos">
-			<a href={termsLink ?? "https://unyt.org/terms-of-service"} target="_blank">{this.navbarStrings.terms}</a>
-			<a href={privacyLink ?? "https://unyt.org/privacy"} target="_blank">{this.navbarStrings.privacy}</a>
-			<a href={legalLink ?? "https://unyt.org/legal-notice"} target="_blank">{this.navbarStrings.about}</a>
+			<a href={termsLink ?? "https://unyt.org/terms-of-service"} target="_blank">{getString("components.footer.terms", this.properties.lang)}</a>
+			<a href={privacyLink ?? "https://unyt.org/privacy"} target="_blank">{getString("components.footer.privacy", this.properties.lang)}</a>
+			<a href={legalLink ?? "https://unyt.org/legal-notice"} target="_blank">{getString("components.footer.about", this.properties.lang)}</a>
 		</div>
 		<div class="references">
 			{this.navbarReferences.map(({name, link, icon}) => <a title={name} href={link}>
@@ -121,7 +123,7 @@ class Sitemap extends Component<{logo?: string | URL | { dark: string | URL, lig
 	</div>
 })
 @standalone
-class Navbar extends Component<{
+class Navbar extends Component<CommonProperties &{
 	legalLink?: string | URL,
 	termsLink?: string | URL,
 	privacyLink?: string | URL,
@@ -137,6 +139,7 @@ class Navbar extends Component<{
 		<div id="footer" data-mode={mode ?? "auto"}>
 			{compact ? null : <Sitemap 
 				id="sitemap"
+				lang={this.properties.lang}
 				logo={logo}
 				disableLanguageSelector={disableLanguageSelector ?? false}
 				disableModeToggle={disableModeToggle ?? false}
@@ -144,6 +147,7 @@ class Navbar extends Component<{
 				mode={mode ?? "auto"}/>}
 			<Navbar 
 				id="navbar"
+				lang={this.properties.lang}
 				mode={mode ?? "auto"}
 				backgroundColor={backgroundColor}
 				termsLink={termsLink ?? "https://unyt.org/terms-of-service"}
@@ -153,7 +157,7 @@ class Navbar extends Component<{
 	</shadow-root>
 })
 @standalone({inheritedFields: ["properties"]})
-export class Footer extends Component<FooterOptions> {
+export class Footer extends Component<FooterOptions & CommonProperties> {
 	@id sitemap!: Sitemap;
 	@id navbar!: Navbar;
 

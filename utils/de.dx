@@ -1,0 +1,10 @@
+{
+components: {
+		footer: {
+			darkMode: "Modus: Dunkel",
+			terms: "Nutzungsbedingungen",
+			privacy: "Datenschutz",
+			about: "Impressum"
+		},
+	},
+}

@@ -1,0 +1,10 @@
+{
+	components: {
+		footer: {
+			darkMode: "Dark mode",
+			terms: "Terms",
+			privacy: "Privacy",
+			about: "Legal Notice"
+		},
+	},
+}
