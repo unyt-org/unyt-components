@@ -20,7 +20,7 @@ export const Testimonial = blankTemplate<TestimonialOptions & { children?: any }
 	{props.author ? <div class="author">
 		<img src={props.author.image} alt={props.author.name}/>
 		<div>
-			<h3>{props.author.name}</h3>
+			<h2>{props.author.name}</h2>
 			<div>{props.author.heading} {props.author.subtitle ? <span>• {props.author.subtitle}</span> : null}</div>
 		</div>
 	</div> : null}
