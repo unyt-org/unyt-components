@@ -6,6 +6,12 @@ export type LocaleString = {
     }
 };
 
+export interface CommonProperties {
+  lang?: LocaleCode;
+  currentPath?: string;
+  csrfToken?: string;
+}
+
 export type LocaleCode = "en" | "de";
 export const supportedLanguages: LocaleCode[] = ["en", "de"];
 

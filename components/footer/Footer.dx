@@ -1,11 +1,9 @@
-use localtext from #std;
-
 export val sitemapStrings = {
-	darkMode: localtext {
+	darkMode: {
 		en: 'Dark mode',
 		de: 'Modus: Dunkel'
 	},
-	lightMode: localtext {
+	lightMode: {
 		en: 'Light mode',
 		de: 'Modus: Hell'
 	},
@@ -26,7 +24,10 @@ export val sitemapReferences = [
 				link: https://unyt.org/
 			},
 			{
-				name: 'Open-Source',
+				name: {
+					en: 'Open-Source',
+					de: 'Open-Source'
+				},
 				link: https://github.com/unyt-org
 			},
 			{

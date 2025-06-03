@@ -6,7 +6,7 @@ import { ToggleSwitch } from "../../elements/toggle-switch/ToggleSwitch.tsx";
 import { Selector, SelectorWrapper } from "../../elements/selector/Selector.tsx";
 import { BackgroundImage } from "../../elements/background-image/BackgroundImage.tsx";
 import { template } from "uix/html/template.ts"
-import { CommonProperties } from "../../utils/localFunctions.ts";
+import { type CommonProperties } from "../../utils/locales.ts";
 import { LocaleCode } from "../../utils/locales.ts";
 
 
@@ -24,7 +24,7 @@ export type FooterOptions = {
 }
 
 @template(function({mode, logo, disableLanguageSelector, disableModeToggle}) {
-	const lang = this.properties.lang ?? "en";
+	const lang: LocaleCode = this.properties.lang ?? UIX?.language as LocaleCode ?? "en";
 	if (logo === undefined)
 		logo = {
 			dark: "https://cdn.unyt.org/unyt-resources/logos/unyt/text-light-transparent-3.svg",
@@ -45,17 +45,16 @@ export type FooterOptions = {
 			<div class="references">
 				{this.sitemapReferences.map(({topic, items}) => <section>
 					<h1>{typeof topic === "string" ? topic : topic[lang]}</h1>
-					{items.map(({name, link}) => 
-					(<a href={link}>{typeof name === "string" ? name : name[lang]}</a>))}
+					{items.map(({name, link}) => (<a href={link}>{typeof name === "string" ? name : name[lang]}</a>))}
 				</section>
 				)}
 			</div>
 			<div class="settings">
-				{disableLanguageSelector ? null : <Selector id="languageSelector" value={UIX?.language === "de" ? "de" : "en"} label={<Icon name="fa-globe"/> as HTMLElement} hideChevron>
+				{disableLanguageSelector ? null : <Selector id="languageSelector" value={lang === "de" ? "de" : "en"} label={<Icon name="fa-globe"/> as HTMLElement} hideChevron>
 					<option value="en">English</option>
 					<option value="de">Deutsch</option>
 				</Selector>}
-				{disableModeToggle ? null : <ToggleSwitch id="modeToggle" label={this.sitemapStrings.darkMode} checked={
+				{disableModeToggle ? null : <ToggleSwitch id="modeToggle" label={this.sitemapStrings.darkMode[lang]} checked={
 					((!mode || mode === "auto") ? (UIX?.Theme?.mode ?? "dark") : mode) === "dark"
 				}/>}
 			</div>
@@ -66,8 +65,8 @@ export type FooterOptions = {
 @standalone
 class Sitemap extends Component<CommonProperties & {logo?: string | URL | { dark: string | URL, light: string | URL }, disableLanguageSelector?: boolean, disableModeToggle?: boolean, disableReload?: boolean, mode?: "dark" | "light" | "auto"}> {
 	@id modeToggle!: ToggleSwitch;
-	@include sitemapReferences!: Array<{topic: string, items: Array<{name: string, link: string | URL}>}>;
-	@include sitemapStrings!: Record<string, string>;
+	@include sitemapReferences!: Array<{topic: string, items: Array<{name: string | Record<LocaleCode, string>, link: string | URL}>}>;
+	@include sitemapStrings!: Record<string, Record<LocaleCode, string>>;
 	@id languageSelector?: SelectorWrapper;
 	@id topAnchor!: HTMLAnchorElement;
 
