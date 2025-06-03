@@ -6,7 +6,7 @@ import { ToggleSwitch } from "../../elements/toggle-switch/ToggleSwitch.tsx";
 import { Selector, SelectorWrapper } from "../../elements/selector/Selector.tsx";
 import { BackgroundImage } from "../../elements/background-image/BackgroundImage.tsx";
 import { template } from "uix/html/template.ts"
-import { CommonProperties, getString } from "../../utils/localFunctions.ts";
+import { CommonProperties } from "../../utils/localFunctions.ts";
 import { LocaleCode } from "../../utils/locales.ts";
 
 
@@ -24,6 +24,7 @@ export type FooterOptions = {
 }
 
 @template(function({mode, logo, disableLanguageSelector, disableModeToggle}) {
+	const lang = this.properties.lang ?? "en";
 	if (logo === undefined)
 		logo = {
 			dark: "https://cdn.unyt.org/unyt-resources/logos/unyt/text-light-transparent-3.svg",
@@ -43,8 +44,9 @@ export type FooterOptions = {
 		<div class="content">
 			<div class="references">
 				{this.sitemapReferences.map(({topic, items}) => <section>
-					<h1>{topic}</h1>
-					{items.map(({name, link}) => <a href={link}>{name}</a>)}
+					<h1>{typeof topic === "string" ? topic : topic[lang]}</h1>
+					{items.map(({name, link}) => 
+					(<a href={link}>{typeof name === "string" ? name : name[lang]}</a>))}
 				</section>
 				)}
 			</div>
@@ -62,7 +64,7 @@ export type FooterOptions = {
 	</>
 })
 @standalone
-class Sitemap extends Component<{logo?: string | URL | { dark: string | URL, light: string | URL }, disableLanguageSelector?: boolean, disableModeToggle?: boolean, disableReload?: boolean, mode?: "dark" | "light" | "auto"}> {
+class Sitemap extends Component<CommonProperties & {logo?: string | URL | { dark: string | URL, light: string | URL }, disableLanguageSelector?: boolean, disableModeToggle?: boolean, disableReload?: boolean, mode?: "dark" | "light" | "auto"}> {
 	@id modeToggle!: ToggleSwitch;
 	@include sitemapReferences!: Array<{topic: string, items: Array<{name: string, link: string | URL}>}>;
 	@include sitemapStrings!: Record<string, string>;
@@ -108,12 +110,13 @@ class Sitemap extends Component<{logo?: string | URL | { dark: string | URL, lig
 	}
 }
 @template(function({legalLink, termsLink, privacyLink, mode, backgroundColor}) {
+	const lang = this.properties.lang ?? "en";
 	return <div class="unyt-navbar" stylesheet="./Navbar.css?" data-mode={mode} id="navbar" style={`--bg-color: ${backgroundColor ?? "transparent"}`}>
 		<div class="copyright">&copy; <span>{new Date().getFullYear()} unyt.org e.V.</span></div>
 		<div class="tos">
-			<a href={termsLink ?? "https://unyt.org/terms-of-service"} target="_blank">{getString("components.footer.terms", this.properties.lang)}</a>
-			<a href={privacyLink ?? "https://unyt.org/privacy"} target="_blank">{getString("components.footer.privacy", this.properties.lang)}</a>
-			<a href={legalLink ?? "https://unyt.org/legal-notice"} target="_blank">{getString("components.footer.about", this.properties.lang)}</a>
+			<a href={termsLink ?? "https://unyt.org/terms-of-service"} target="_blank">{this.navbarStrings.terms[lang]}</a>
+			<a href={privacyLink ?? "https://unyt.org/privacy"} target="_blank">{this.navbarStrings.privacy[lang]}</a>
+			<a href={legalLink ?? "https://unyt.org/legal-notice"} target="_blank">{this.navbarStrings.about[lang]}</a>
 		</div>
 		<div class="references">
 			{this.navbarReferences.map(({name, link, icon}) => <a title={name} href={link}>
@@ -130,7 +133,7 @@ class Navbar extends Component<CommonProperties &{
 	mode?: "auto" | "light" | "dark",
 	backgroundColor?: string}> {
 	@include navbarReferences!: Array<{name: string, link: URL, icon: string}>;
-	@include navbarStrings!: Record<string, string>;
+	@include navbarStrings!: Record<string, Record<LocaleCode, string>>;
 }
 
 @template(function({termsLink, privacyLink, legalLink, logo, disableLanguageSelector, disableModeToggle, backgroundColor, disableReload, compact, mode}) {

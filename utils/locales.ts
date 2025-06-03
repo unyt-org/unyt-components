@@ -1,12 +1,9 @@
 export type LocaleString = {
   components: {
     footer: {
-      darkMode: string;
-      terms: string;
-      privacy: string;
-      about: string;
+      nothing: string;
+      }
     }
-  }
 };
 
 export type LocaleCode = "en" | "de";

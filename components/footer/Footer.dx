@@ -13,13 +13,13 @@ export val sitemapStrings = {
 
 export val sitemapReferences = [
 	{
-		topic: localtext {
+		topic: {
 			en: 'Overview',
 			de: 'Übersicht'
 		},
 		items: [
 			{
-				name: localtext {
+				name: {
 					en: 'Essentials',
 					de: 'Grundlagen'
 				},
@@ -30,14 +30,14 @@ export val sitemapReferences = [
 				link: https://github.com/unyt-org
 			},
 			{
-				name: localtext {
+				name: {
 					en: 'Sponsors',
 					de: 'Sponsoren'
 				},
 				link: https://unyt.org/sponsors
 			},
 			{
-				name: localtext {
+				name: {
 					en: 'PGP',
 					de: 'PGP'
 				},
@@ -46,34 +46,34 @@ export val sitemapReferences = [
 		]
 	},
 	{
-		topic: localtext {
+		topic: {
 			en: 'Support',
 			de: 'Hilfe'
 		},
 		items: [
 			{
-				name: localtext {
+				name: {
 					en: 'Docs',
 					de: 'Doku'
 				},
 				link: https://docs.unyt.org/
 			},
 			{
-				name: localtext {
+				name: {
 					en: 'Blog',
 					de: 'Blog'
 				},
 				link: https://unyt.blog
 			},
 			{
-				name: localtext {
+				name: {
 					en: 'Glossary',
 					de: 'Glossar'
 				},
 				link: "https://unyt.org/glossary"
 			},
 			{
-				name: localtext {
+				name: {
 					en: 'Status',
 					de: 'Status'
 				},
@@ -82,34 +82,34 @@ export val sitemapReferences = [
 		]
 	},
 	{
-		topic: localtext {
+		topic: {
 			en: 'Company',
 			de: 'Verein'
 		},
 		items: [
 			{
-				name: localtext {
+				name: {
 					en: 'Join us',
 					de: 'Mitmachen'
 				},
 				link: https://unyt.org/apply
 			},
 			{
-				name: localtext {
+				name: {
 					en: 'Donate',
 					de: 'Spenden'
 				},
 				link: https://unyt.org/donate
 			},
 			{
-				name: localtext {
+				name: {
 					en: 'Careers',
 					de: 'Karriere'
 				},
 				link: "mailto:join@unyt.org"
 			},
 			{
-				name: localtext {
+				name: {
 					en: 'Contact',
 					de: 'Kontakt'
 				},
@@ -118,7 +118,7 @@ export val sitemapReferences = [
 		]
 	},
 	{
-		topic: localtext {
+		topic: {
 			en: 'Team',
 			de: 'Team'
 		},
@@ -177,15 +177,15 @@ export val navbarReferences = [
 ];
 
 export val navbarStrings = {
-	terms: localtext {
+	terms: {
 		en: 'Terms',
 		de: 'Nutzungsbedingungen'
 	},
-	privacy: localtext {
+	privacy: {
 		en: 'Privacy',
 		de: 'Datenschutz'
 	},
-	about: localtext {
+	about: {
 		en: 'Legal Notice',
 		de: 'Impressum'
 	}
