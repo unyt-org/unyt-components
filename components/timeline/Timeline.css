@@ -31,10 +31,6 @@
 			}
 		}
 	}
-
-	* {
-		color: var(--_tl-text-primary);
-	}
 	
 	&>* {
 		position: relative;
