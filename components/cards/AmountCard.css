@@ -31,6 +31,7 @@
 	&:hover {
     transform: scale(1.03);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
 		&::after {
 			opacity: 0.1;
 		}
@@ -49,7 +50,7 @@
 			transparent 70%
 		);
 		opacity: 0;
-		/* transition: opacity 0.2s ease-out; */
+		transition: opacity 0.2s ease-out;
 		pointer-events: none;
   	}
 }
