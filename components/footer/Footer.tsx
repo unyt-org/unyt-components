@@ -8,6 +8,7 @@ import { BackgroundImage } from "../../elements/background-image/BackgroundImage
 import { template } from "uix/html/template.ts"
 import { type CommonProperties } from "../../utils/locales.ts";
 import { LocaleCode } from "../../utils/locales.ts";
+import { ThemeManagerType } from "uix/base/theme-manager.ts";
 
 
 export type FooterOptions = {
@@ -97,15 +98,23 @@ class Sitemap extends Component<CommonProperties & {logo?: string | URL | { dark
 	}
 
 	private async handleModeChange() {
-		const { getThemeManager } = (await import("uix/base/theme-manager.ts" /*lazy*/));
-		const themeManager = getThemeManager();
-		this.modeToggle.onToggle((checked) => {
-			themeManager.setMode(checked ? "dark" : "light");
-		});
-		themeManager.onModeChange((theme)=>{
-			this.modeToggle.setChecked(theme === "dark");
-		});
-		this.modeToggle.setChecked(themeManager.mode === "dark");
+		// @ts-ignore $
+		if (!globalThis.ThemeManagerPromise)
+			// @ts-ignore $
+			globalThis.ThemeManagerPromise = import("uix/base/theme-manager.ts" /*lazy*/);
+		// @ts-ignore $
+		await new Promise(r => setTimeout(r, 500));
+		const { getThemeManager } = await globalThis.ThemeManagerPromise;
+		const themeManager: ThemeManagerType | undefined = getThemeManager() as ThemeManagerType | undefined;
+		if (themeManager) {
+			this.modeToggle.onToggle((checked) => {
+				themeManager.setMode(checked ? "dark" : "light");
+			});
+			themeManager.onModeChange((theme)=>{
+				this.modeToggle.setChecked(theme === "dark");
+			});
+			this.modeToggle.setChecked(themeManager.mode === "dark");
+		}
 	}
 }
 @template(function({legalLink, termsLink, privacyLink, mode, backgroundColor}) {

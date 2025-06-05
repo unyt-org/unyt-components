@@ -1,4 +1,5 @@
 import { UIX } from "uix";
+import { ThemeManagerType } from "uix/base/theme-manager.ts";
 import { Component } from "uix/components/Component.ts";
 import { template } from "uix/html/template.ts"
 
@@ -47,16 +48,23 @@ export class ThemeSwitcher extends Component<ThemeSwitcherOptions> {
 			this.initDefault();
 	}
 	private async initCompact() {
-		const { getThemeManager } = (await import("uix/base/theme-manager.ts" /*lazy*/));
-		const themeManager = getThemeManager();
-
-		this.button.addEventListener("click", () => {
-			themeManager.setMode(themeManager.mode === "light" ? "dark" : "light");
-		});
-		themeManager.onModeChange((mode)=> {
-			this.button.dataset.mode = mode === "light" ? "dark" : "light";
-		});
-		this.button.dataset.mode = themeManager.mode === "light" ? "dark" : "light";
+		// @ts-ignore $
+		if (!globalThis.ThemeManagerPromise)
+			// @ts-ignore $
+			globalThis.ThemeManagerPromise = import("uix/base/theme-manager.ts" /*lazy*/);
+		await new Promise(r => setTimeout(r, 500));
+		// @ts-ignore $
+		const { getThemeManager } = await globalThis.ThemeManagerPromise;
+		const themeManager: ThemeManagerType | undefined = getThemeManager() as ThemeManagerType | undefined;
+		if (themeManager) {
+			this.button.addEventListener("click", () => {
+				themeManager.setMode(themeManager.mode === "light" ? "dark" : "light");
+			});
+			themeManager.onModeChange((mode)=> {
+				this.button.dataset.mode = mode === "light" ? "dark" : "light";
+			});
+			this.button.dataset.mode = themeManager.mode === "light" ? "dark" : "light";
+		}
 	}
 	private async initDefault() {
 		const inputs = Array.from(this.field.querySelectorAll<HTMLInputElement>("input"));
