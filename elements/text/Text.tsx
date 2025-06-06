@@ -14,7 +14,6 @@ export const GradientText = template<{children?: any} & GradientTextOptions>(({c
 	})` : Array.isArray(colors) ? fallback : colors ?? fallback;
 	return <span style={{
 		backgroundColor: "transparent",
-		lineHeight: "100%",
 		"background-image": background,
 		"-webkit-text-fill-color": "transparent",
 		"background-clip": "text",
