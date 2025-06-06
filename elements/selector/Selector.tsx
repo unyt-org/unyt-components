@@ -148,6 +148,9 @@ export class SelectorWrapper extends Component<SelectorOptions & {
 		const marginX = this.properties.marginX ?? 0;
 		const marginY = this.properties.marginY ?? 0;
 
+		this.dropdown.onbeforetoggle = () => {
+			this.dropdown.style.opacity = "0";
+		}
 		this.dropdown.ontoggle = () => {
 			const rect = this.selector.getBoundingClientRect();
 			let left = 0, top = 0;
@@ -165,6 +168,7 @@ export class SelectorWrapper extends Component<SelectorOptions & {
 				top = rect.top + marginY;
 			this.dropdown.style.left = `${left}px`;
 			this.dropdown.style.top = `${top}px`;
+			this.dropdown.style.opacity = "1";
 		}
 
 		this.callbacks = new Set();
