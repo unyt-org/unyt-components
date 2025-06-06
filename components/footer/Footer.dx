@@ -107,7 +107,7 @@ export val sitemapReferences = [
 					en: 'Careers',
 					de: 'Karriere'
 				},
-				link: "mailto:join@unyt.org"
+				link: "https://unyt.org/careers"
 			},
 			{
 				name: {
