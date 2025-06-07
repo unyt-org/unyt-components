@@ -22,6 +22,7 @@ export type HeaderOptions = {
 	disableHoverNavigation?: boolean;
 	iconRight?: string | HTMLElement;
 	stylesheet?: URL | string;
+	sideMenuFooterContent?: HTMLElement
 }
 export type NavigationItem = { heading: string | HTMLElement, link?: string, children?: Array<NavigationItem | HTMLElement> }
 
@@ -33,7 +34,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 	return <HeaderWrapper {...props} left={left} right={right}/> as HTMLDivElement
 })
 
-@template(function({ disableBorder, iconRight, disableHoverNavigation, banner, maxWidth, left, right, hamburgerMenuMaxWidth, disableHamburgerMenu, position, navigation, backgroundColor, label, logo, mode, size, stylesheet }) {
+@template(function({ sideMenuFooterContent, disableBorder, iconRight, disableHoverNavigation, banner, maxWidth, left, right, hamburgerMenuMaxWidth, disableHamburgerMenu, position, navigation, backgroundColor, label, logo, mode, size, stylesheet }) {
 	if (logo === undefined)
 		logo = {
 			dark: "https://cdn.unyt.org/unyt-resources/logos/unyt/text-light-transparent-3.svg",
@@ -55,7 +56,7 @@ export const Header = blankTemplate<HeaderOptions & { children?: any}>(({childre
 				"--size": `${typeof size === "number" ? `${size}px` : (size ?? '70px')}`,
 				"--header-bg-primary": `${backgroundColor ?? "transparent"}`
 			}}>
-			{disableHamburgerMenu ? null : <HamburgerMenu stylesheet="./HamburgerMenu.css?" id="hamburgerMenu" mode={mode ?? "auto"} maxWidth={hamburgerMenuMaxWidth} logo={logo} label={label instanceof HTMLElement ? (label.cloneNode(true) as HTMLElement) : label} navigation={navigation}/>}
+			{disableHamburgerMenu ? null : <HamburgerMenu sideMenuFooterContent={sideMenuFooterContent} stylesheet="./HamburgerMenu.css?" id="hamburgerMenu" mode={mode ?? "auto"} maxWidth={hamburgerMenuMaxWidth} logo={logo} label={label instanceof HTMLElement ? (label.cloneNode(true) as HTMLElement) : label} navigation={navigation}/>}
 			<a class="header-icon static" href="/" title="Home">
 				<BackgroundImage
 					dark={(typeof logo != "string" && "dark" in logo) ? logo.dark : logo}

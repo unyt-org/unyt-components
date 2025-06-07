@@ -3,6 +3,7 @@ import { Icon } from "../icon/Icon.tsx";
 import { Path } from "datex-core-legacy/utils/path.ts";
 import { blankTemplate, template } from "uix/html/template.ts"
 import { style } from "uix/html/style.ts"
+import { getLiveNodes } from "uix/hydration/partial.ts";
 
 export type SelectorOptions = {
 	value?: string | Ref<string>;
@@ -126,12 +127,14 @@ export class SelectorWrapper extends Component<SelectorOptions & {
 	}
 
 	private listenForHover() {
-		this.selector.addEventListener("mouseenter", () => {
-			this.dropdown.showPopover();
-		});
-		this.addEventListener("mouseleave", () => {
-			this.dropdown.hidePopover();
-		});
+		if (!('ontouchstart' in globalThis || navigator.maxTouchPoints > 0)) {
+			this.selector.addEventListener("mouseenter", () => {
+				this.dropdown.showPopover();
+			});
+			this.addEventListener("mouseleave", () => {
+				this.dropdown.hidePopover();
+			});
+		}
 		globalThis.addEventListener("scroll", () => {
 			this.dropdown.hidePopover();
 		});
