@@ -23,6 +23,48 @@ export type FooterOptions = {
 	privacyLink?: string | URL;
 	legalLink?: string | URL;
 }
+function getLocalizedUrl(
+    url: string | URL,
+    lang: LocaleCode = "en",
+): string {
+    const urlStr = url.toString();
+    if (!urlStr) return lang === "en" ? "/" : `/${lang}`;
+    if (/^https?:\/\//i.test(urlStr)) {
+        const urlObj = new URL(urlStr);
+
+        if (!urlObj.hostname.includes("unyt.org")) {
+            return urlStr;
+        }
+
+        const path = urlObj.pathname.replace(/^\/([a-z]{2}\/)?/, "");
+
+        if (lang === "en") {
+            urlObj.pathname = path ? `/${path}` : "/";
+        } else {
+            const langPrefix = `/${lang}/`;
+            if (
+                !urlObj.pathname.startsWith(langPrefix) &&
+                urlObj.pathname !== `/${lang}`
+            ) {
+                urlObj.pathname = path ? `/${lang}/${path}` : `/${lang}`;
+            }
+        }
+
+        return urlObj.toString();
+    }
+
+    let path = urlStr;
+    path = path.replace(/^\/([a-z]{2}\/)?/, "");
+
+    if (lang === "en") {
+        return path ? `/${path}` : "/";
+    } else {
+        if (path.startsWith(`${lang}/`) || path === lang) {
+            return `/${path}`;
+        }
+        return path ? `/${lang}/${path}` : `/${lang}`;
+    }
+}
 
 @template(function({mode, logo, disableLanguageSelector, disableModeToggle}) {
 	const lang: LocaleCode = this.properties.lang ?? UIX?.language as LocaleCode ?? "en";
@@ -46,7 +88,7 @@ export type FooterOptions = {
 			<div class="references">
 				{this.sitemapReferences.map(({topic, items}) => <section>
 					<h1>{typeof topic === "string" ? topic : topic[lang]}</h1>
-					{items.map(({name, link}) => (<a href={link}>{typeof name === "string" ? name : name[lang]}</a>))}
+					{items.map(({name, link}) => (<a href={getLocalizedUrl(link, lang)}>{typeof name === "string" ? name : name[lang]}</a>))}
 				</section>
 				)}
 			</div>
@@ -122,9 +164,9 @@ class Sitemap extends Component<CommonProperties & {logo?: string | URL | { dark
 	return <div class="unyt-navbar" stylesheet="./Navbar.css?" data-mode={mode} id="navbar" style={`--bg-color: ${backgroundColor ?? "transparent"}`}>
 		<div class="copyright">&copy; <span>{new Date().getFullYear()} unyt.org e.V.</span></div>
 		<div class="tos">
-			<a href={termsLink ?? "https://unyt.org/terms-of-service"} target="_blank">{this.navbarStrings.terms[lang]}</a>
-			<a href={privacyLink ?? "https://unyt.org/privacy"} target="_blank">{this.navbarStrings.privacy[lang]}</a>
-			<a href={legalLink ?? "https://unyt.org/legal-notice"} target="_blank">{this.navbarStrings.about[lang]}</a>
+			<a href={getLocalizedUrl(termsLink ?? "https://unyt.org/terms-of-service", lang)} target="_blank">{this.navbarStrings.terms[lang]}</a>
+			<a href={getLocalizedUrl(privacyLink ?? "https://unyt.org/privacy", lang)} target="_blank">{this.navbarStrings.privacy[lang]}</a>
+			<a href={getLocalizedUrl(legalLink ?? "https://unyt.org/legal-notice", lang)} target="_blank">{this.navbarStrings.about[lang]}</a>
 		</div>
 		<div class="references">
 			{this.navbarReferences.map(({name, link, icon}) => <a title={name} href={link}>
