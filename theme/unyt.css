@@ -39,7 +39,7 @@
 	/* border */
 	--unyt-dark-border-primary: hsla(0, 0%, 100%, .1);
 	--unyt-light-border-primary: hsla(0, 0%, 0%, 0.1);
-	--unyt-dark-border-invalid: rgb(215, 26, 26);
+	--unyt-dark-border-invalid: rgb(244, 126, 126);
 	--unyt-light-border-invalid: rgb(215, 26, 26);
 }
 
