@@ -146,12 +146,16 @@ export class HeaderWrapper extends Component<HeaderOptions & { stylesheet?: URL 
 	}
 
 	private listenForOverflow() {
-		function isOverflowing(container: HTMLElement) {
-			return container.scrollWidth > container.offsetWidth;
+		function isOverflowing(container1: HTMLElement, container2: HTMLElement, wrapper: HTMLElement, gap: number) {
+			return container1.scrollWidth + container2.scrollWidth + gap > wrapper.offsetWidth;
 		}
 		const left = this.content.querySelector('.left') as HTMLDivElement;
+		const right = this.content.querySelector('.right') as HTMLDivElement;
+		const content = this.content;
+		const gap = parseFloat(getComputedStyle(content).columnGap) || 0;
+
 		const onResize = () =>
-			this.header.classList.toggle('compact', isOverflowing(left));
+			this.header.classList.toggle('compact', isOverflowing(left, right, content, gap));
 		const observer = new ResizeObserver(() => onResize());
 		observer.observe(this.content);
 		onResize();
