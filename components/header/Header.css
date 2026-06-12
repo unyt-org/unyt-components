@@ -166,7 +166,7 @@
 		}
 		&>.content {
 			display: flex;
-			flex-wrap: wrap;
+			flex-wrap: nowrap;
 			flex: 1;
 			overflow: hidden;
 			gap: 20px;

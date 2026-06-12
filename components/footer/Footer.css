@@ -79,6 +79,7 @@
 				text-decoration: none;
 				color: var(--_fo-text-primary);
 				transition: color 0.1s, transform 0.1s;
+				cursor: pointer;
 				&:hover {
 					color: var(--_fo-link-color);
 				}
