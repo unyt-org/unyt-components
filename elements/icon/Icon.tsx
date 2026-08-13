@@ -9,7 +9,7 @@ export const Icon = blankTemplate<IconOptions>(({name, ...props}) => {
 		if (!document.head.querySelector(`link#${IDENTIFIER}`))
 			document.head.append(<link
 				id={IDENTIFIER}
-				href={"https://dev.cdn.unyt.org/uix/style/fontawesome.css"}
+				href={"https://cdn.unyt.org/uix@0.4.x/src/style/fontawesome/css/all.min.css"}
 				rel={"stylesheet"}/>);
 	}
 	delete props.class;
